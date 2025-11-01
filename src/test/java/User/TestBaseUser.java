@@ -1,3 +1,5 @@
+package User;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -6,7 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import utils.Config;
 import utils.Driver;
 
-public class TestBase {
+public class TestBaseUser {
     @BeforeMethod
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
@@ -15,7 +17,7 @@ public class TestBase {
         Driver.setDriver(driver);
 
         Driver.getDriver().manage().window().maximize();
-        Driver.getDriver().get(Config.BASE_URL);
+        Driver.getDriver().get(Config.URL_USER_PAGE);
     }
 
     @AfterMethod
