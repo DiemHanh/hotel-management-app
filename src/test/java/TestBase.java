@@ -6,8 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import utils.Config;
 import utils.Driver;
 
-public class BaseTest {
-
+public class TestBase {
     @BeforeMethod
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
