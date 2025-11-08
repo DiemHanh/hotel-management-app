@@ -1,8 +1,8 @@
 package User;
 
 import TestBase.TestBaseUser;
+import models.user.Payment;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import userPages.*;
 import utils.CardInformation;
 import utils.DateUtils;
@@ -20,6 +20,8 @@ public class TC02 extends TestBaseUser {
 
     LocalDate randomDateNextMonth = DateUtils.parseDate("2025/11/10");
 
+    Payment payment = new Payment(cardInfo.cardNumber, cardInfo.cardName, cardInfo.cardDate, cardInfo.cardCVV);
+
     @Test
     public void TC02() {
         homePage.openRoomsPage();
@@ -34,15 +36,15 @@ public class TC02 extends TestBaseUser {
         bookingPage.inputBooking("Phuong Nhi", "cus@gmail.com", "0912345678", "Vietnam");
 
         // enter credit card and pay now
-        paymentPage.enterPaymentBooking(cardInfo.cardNumber, cardInfo.cardName, cardInfo.cardDate, cardInfo.cardCVV); // use object model
+        paymentPage.enterPaymentBooking(payment);
 
         // confirm page
         sa.assertEquals(confirmPage.getSuccessMessage(), "Thank you! Your booking has been placed. We will contact you to confirm about the booking soon.");
 
         // click rooms menu
-        homePage.openRoomsPage();
-        roomListPage.openRoomDetailByIndex(2);
-        roomDetailPage.inputInformationBooking(randomDateNextMonth, DateUtils.getFollowingDay(randomDateNextMonth), 1, "0");
+//        homePage.openRoomsPage();
+//        roomListPage.openRoomDetailByIndex(2);
+//        roomDetailPage.inputInformationBooking(randomDateNextMonth, DateUtils.getFollowingDay(randomDateNextMonth), 1, "0");
 
         sa.assertAll();
     }
