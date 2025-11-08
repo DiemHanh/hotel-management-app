@@ -6,12 +6,12 @@ import utils.Config;
 
 public class TestBaseUser extends TestBase {
     @BeforeMethod
-    public void setUpAdmin() {
+    public void setUpUser() {
         setUp(Config.URL_USER_PAGE);
     }
 
     @AfterMethod
-    public void tearDownAdmin() {
+    public void tearDownUser() {
         cleanUp();
     }
 }

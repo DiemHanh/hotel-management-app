@@ -3,9 +3,12 @@ package TestBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.asserts.SoftAssert;
 import utils.Driver;
 
 public class TestBase {
+    protected SoftAssert sa = new SoftAssert();
+
     public void setUp(String url) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--guest");

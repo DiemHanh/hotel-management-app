@@ -8,6 +8,7 @@ public class HomePage extends LoginModal {
     private final By loginBtnLocator = By.xpath("//header//a[@href='#Login_tab']");
     private final By loginSignupModalLocator = By.id("login_signup");
 
+    private final By scrollToTopLocator = By.id("scrollToTop");
     private final By checkInInputLocator = By.id("check-in");
     private final By checkOutInputLocator = By.id("check-out");
     private final By adultInputLocator = By.name("adult");
@@ -50,5 +51,10 @@ public class HomePage extends LoginModal {
 
     public void openRoomsPage() {
         Driver.getDriver().findElement(roomLinkLocator).click();
+    }
+
+    public void scrollToTopPage() {
+        Driver.getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(scrollToTopLocator));
+        Driver.getDriver().findElement(scrollToTopLocator).click();
     }
 }

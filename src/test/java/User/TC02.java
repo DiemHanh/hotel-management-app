@@ -20,8 +20,6 @@ public class TC02 extends TestBaseUser {
 
     LocalDate randomDateNextMonth = DateUtils.parseDate("2025/11/10");
 
-    SoftAssert sa = new SoftAssert();
-
     @Test
     public void TC02() {
         homePage.openRoomsPage();
