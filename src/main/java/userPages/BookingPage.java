@@ -6,17 +6,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.Driver;
 
 public class BookingPage {
-    private final By bookingTitleLocator = By.className("page_title");
     private final By nameInputLocator = By.id("name");
     private final By emailInputLocator = By.id("email");
     private final By phoneInputLocator = By.id("phone");
     private final By addressInputLocator = By.id("address");
     private final By checkboxLocator = By.xpath("//form[@id='user']//label");
     private final By submitBtnLocator = By.cssSelector("[value='Submit']");
-
-    public String getTitleBookingPage() {
-        return Driver.getDriver().findElement(bookingTitleLocator).getText();
-    }
 
     public void inputBooking(String name, String email, String phone, String address) {
         enterName(name);

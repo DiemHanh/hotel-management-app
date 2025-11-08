@@ -13,7 +13,6 @@ public class HomePage extends LoginModal {
     private final By adultInputLocator = By.name("adult");
     private final By childrenInputLocator = By.name("children");
     private final By searchBtnLocator = By.cssSelector("[value='Search']");
-    private final By profileLocator = By.id("NavebarProfileDrop");
     private final By roomLinkLocator = By.cssSelector("[href='/rooms']");
 
     public void openLoginModal() {
@@ -51,9 +50,5 @@ public class HomePage extends LoginModal {
 
     public void openRoomsPage() {
         Driver.getDriver().findElement(roomLinkLocator).click();
-    }
-
-    public boolean isLoginSuccess() {
-        return Driver.getDriver().findElement(profileLocator).isDisplayed();
     }
 }

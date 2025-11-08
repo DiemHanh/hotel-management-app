@@ -3,14 +3,14 @@ package userPages;
 import org.openqa.selenium.By;
 import utils.Driver;
 
-public class CheckoutPage {
+public class PaymentPage {
     private final By cardNumberInputLocator = By.id("cardNumber");
     private final By nameInputLocator = By.id("ownerName");
     private final By expiryInputLocator = By.name("expiry");
     private final By cvvInputLocator = By.id("cvvcode");
     private final By payNowBtnLocator = By.xpath("//div[@id='pills-creadit']//input[@value='Pay Now']");
 
-    public void enterCheckoutBooking(String cardNumber, String name, String date, String cvv) {
+    public void enterPaymentBooking(String cardNumber, String name, String date, String cvv) {
         enterCardNumber(cardNumber);
         enterName(name);
         enterExpiry(date);

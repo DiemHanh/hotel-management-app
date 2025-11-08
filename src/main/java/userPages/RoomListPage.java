@@ -9,15 +9,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RoomListPage {
-    private final By roomTitleLocator = By.className("page_title");
     private final By roomContainerLocator = By.className("pop_item_description");
     private final By roomNameLocator = By.tagName("h5");
     private final By roomPriceLocator = By.className("green_text");
     private final By roomBtnToDetailLocator = By.cssSelector(".btn.btn-success.float-right");
-
-    public String getTitleRoomsPage() {
-        return Driver.getDriver().findElement(roomTitleLocator).getText();
-    }
 
     public List<Room> getAllRooms() {
         return Driver.getDriver().findElements(roomContainerLocator)

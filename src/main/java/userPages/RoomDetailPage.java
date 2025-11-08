@@ -7,21 +7,16 @@ import utils.Driver;
 import java.time.LocalDate;
 
 public class RoomDetailPage {
-    private final By roomDetailTitleLocator = By.className("page_title");
     private final By checkInInputLocator = By.id("check-in");
     private final By checkOutInputLocator = By.id("check-out");
     private final By adultInputLocator = By.id("adult");
     private final By childrenInputLocator = By.id("children");
     private final By bookNowBtnLocator = By.cssSelector("[value='Book Now']");
 
-    public String getTitleRoomsPage() {
-        return Driver.getDriver().findElement(roomDetailTitleLocator).getText();
-    }
-
     public void inputInformationBooking(LocalDate checkIndate, LocalDate checkOutdate, int adult, String child) {
         enterCheckInDate(checkIndate);
         enterCheckOutDate(checkOutdate);
-        enterNumberAdult(adult);// parse string
+        enterNumberAdult(adult);
         enterNumberChild(child);
         clickBookNowBtn();
     }
