@@ -13,13 +13,14 @@ public class AddRoomTypePage {
     private final By visibleMenuChildrenLocator = By.cssSelector(".mdl-menu__container.is-upgraded.is-visible");
     private final By DescriptionLocator = By.id("text7");
     private final By SubmitLocator = By.cssSelector("[class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink\"]");
-
+// rename locator
     public void addRoomType(RoomType roomType) {
         enterTitle(roomType.getTitle());
         enterPrice(roomType.getPrice());
         selectAdultCapacity(roomType.getAdultCapacity());
         selectChildrenCapacity(roomType.getChildrenCapacity());
         enterDescription(roomType.getDescription());
+        clickSubmitButton();
     }
 
     public void enterTitle(String title) {

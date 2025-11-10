@@ -14,8 +14,4 @@ public class DateUtils {
     public static LocalDate getToday() {
         return LocalDate.now();
     }
-
-    public static LocalDate parseDate(String dateStr) {
-        return LocalDate.parse(dateStr, FORMATTER);
-    }
 }

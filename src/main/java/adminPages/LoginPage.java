@@ -8,7 +8,7 @@ public class LoginPage {
     private final By PasswordAdminLocator = By.name("password");
     private final By LoginButtonLocator = By.className("login100-form-btn");
     private final By LoginPageLocator = By.className("wrap-login100");
-
+// rename locator
     public void login(String username, String password) {
         enterUserName(username);
         enterPassword(password);
@@ -27,5 +27,4 @@ public class LoginPage {
     public void ClickLogInBtn() {
         Driver.getDriver().findElement(LoginButtonLocator).click();
     }
-
 }

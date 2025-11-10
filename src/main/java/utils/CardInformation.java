@@ -5,4 +5,4 @@ public class CardInformation {
     public String cardName = "JOHN HENRY";
     public String cardDate = "1225";
     public int cardCVV = 123;
-}
+}// delete all

@@ -3,8 +3,6 @@ package Admin;
 import TestBase.TestBaseAdmin;
 import adminPages.AddRoomTypePage;
 import adminPages.AllRoomTypesPage;
-import adminPages.HomePage;
-import com.github.javafaker.Faker;
 import models.admin.RoomType;
 import org.testng.annotations.Test;
 import userPages.LoginModal;
@@ -15,7 +13,6 @@ import utils.Driver;
 import utils.UserInformation;
 
 public class TC09 extends TestBaseAdmin {
-    HomePage homePageAdmin = new HomePage();
     userPages.HomePage homePage = new userPages.HomePage();
     LoginModal loginModal = new LoginModal();
     RoomListPage roomListPage = new RoomListPage();
@@ -23,8 +20,6 @@ public class TC09 extends TestBaseAdmin {
     AdminInformation adminInfo = new AdminInformation();
     UserInformation userInfo = new UserInformation();
     AllRoomTypesPage allRoomTypesPage = new AllRoomTypesPage();
-
-    Faker faker = new Faker();
 
     String title = faker.address().cityName() + " " +
             faker.options().option("Deluxe Suite", "Family Room", "Presidential Villa", "Ocean View Room") + " " +
@@ -51,9 +46,6 @@ public class TC09 extends TestBaseAdmin {
         //4. Enter Room Type information
         addRoomTypePage.addRoomType(roomInfo);
 
-        //5. Click Submit button
-        addRoomTypePage.clickSubmitButton();
-
         //6. Search for newly created Room type
         allRoomTypesPage.searchRoomType(roomInfo.getTitle());
 
@@ -61,7 +53,7 @@ public class TC09 extends TestBaseAdmin {
         sa.assertEquals(allRoomTypesPage.getSearchResult(), roomInfo.getTitle(), "Room type title in search result does not match expected value");
 
         //7. Logout
-        allRoomTypesPage.clickLogOutButton();
+        allRoomTypesPage.clickLogOutButton(); // rename: logout()
 
         //navigate to User URL
         Driver.getDriver().navigate().to(Config.URL_USER_PAGE);
@@ -76,8 +68,9 @@ public class TC09 extends TestBaseAdmin {
         homePage.openRoomsPage();
 
         //10. Click on "View detail" button of newly created Room
-        roomListPage.clickViewDetailsByRoomName(roomInfo.getTitle());
-
+        roomListPage.clickViewDetailsByRoomName(roomInfo.getTitle()); // openRoomDetailByName
+// assert equal same room or not
+        // verify name and price
         sa.assertAll();
     }
 }

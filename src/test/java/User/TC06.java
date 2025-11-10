@@ -1,20 +1,37 @@
 package User;
 
 import TestBase.TestBaseUser;
-import com.github.javafaker.Faker;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import models.user.Room;
 import org.testng.annotations.Test;
+import userPages.RoomDetailPage;
+import userPages.RoomListPage;
 
-import java.util.Random;
+import java.util.List;
 
+@Slf4j
 public class TC06 extends TestBaseUser {
-    private static final Logger log = LoggerFactory.getLogger(TC06.class);
-    Faker faker = new Faker(new Random(24));
-    int numberAdult = faker.number().numberBetween(1, 5);
+    RoomListPage roomListPage = new RoomListPage();
+    RoomDetailPage roomDetailPage = new RoomDetailPage();
+    Room randomRoom = new Room();
+
+    int randomNumber = faker.number().numberBetween(1, 5);
 
     @Test
     public void TC06() {
-        log.info("Number of adults: " + numberAdult);
+        homePage.openRoomsPage();
+
+        List<Room> listRoom = roomListPage.getAllRooms();
+        randomRoom = listRoom.get(randomNumber - 1);
+
+        roomListPage.openRoomDetailByIndex(randomNumber);
+
+        Room roomDetail = new Room(
+                roomDetailPage.getRoomName(),
+                Float.parseFloat(roomDetailPage.getRoomPrice().substring(1))
+        ); // return a room
+
+        sa.assertEquals(randomRoom, roomDetail);
+        sa.assertAll();
     }
 }

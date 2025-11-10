@@ -41,7 +41,7 @@ public class TempMailPage {
         // wait until the email is generated
         Driver.getWebDriverWait().until(ExpectedConditions.not(
                 ExpectedConditions.textToBePresentInElementLocated(emailLocator, Driver.getDriver().findElement(emailLocator).getText())
-        ));
+        ));// wait until the email # "generating email"
 
         return Driver.getDriver().findElement(emailLocator).getText();
     }

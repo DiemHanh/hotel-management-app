@@ -5,7 +5,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.Driver;
 
 public class HomePage extends LoginModal {
-    private final By loginBtnLocator = By.xpath("//header//a[@href='#Login_tab']");
+    private final By loginBtnLocator = By.xpath("//header//a[@href='#Login_tab']"); // change
     private final By loginSignupModalLocator = By.id("login_signup");
 
     private final By scrollToTopLocator = By.id("scrollToTop");
@@ -14,7 +14,7 @@ public class HomePage extends LoginModal {
     private final By adultInputLocator = By.name("adult");
     private final By childrenInputLocator = By.name("children");
     private final By searchBtnLocator = By.cssSelector("[value='Search']");
-    private final By roomLinkLocator = By.cssSelector("[href='/rooms']");
+    private final By roomLinkLocator = By.cssSelector("[href='/rooms']"); // change
 
     public void openLoginModal() {
         Driver.getDriver().findElement(loginBtnLocator).click();
@@ -54,9 +54,9 @@ public class HomePage extends LoginModal {
     }
 
     public void scrollToTopPage() {
-        Driver.getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(scrollToTopLocator));
-        Driver.getDriver().findElement(scrollToTopLocator).click();
+        Driver.getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(scrollToTopLocator)).click();
+//        Driver.getDriver().findElement(scrollToTopLocator).click();
         // wait until scroll finishes
-        Driver.getWebDriverWait().until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".is-sticky")));
+        Driver.getWebDriverWait().until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".is-sticky")));// wait to scroll btn disappear
     }
 }

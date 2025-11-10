@@ -13,6 +13,8 @@ public class RoomDetailPage {
     private final By adultInputLocator = By.id("adult");
     private final By childrenInputLocator = By.id("children");
     private final By bookNowBtnLocator = By.cssSelector("[value='Book Now']");
+    private final By roomNameLocator = By.cssSelector("h3.float-left");
+    private final By roomPriceLocator = By.cssSelector(".yemm_top_price > strong");
 
     public void inputInformationBooking(LocalDate checkIndate, LocalDate checkOutdate, int adult, int child) {
         enterCheckInDate(checkIndate);
@@ -46,5 +48,13 @@ public class RoomDetailPage {
 
     public void clickBookNowBtn() {
         Driver.getDriver().findElement(bookNowBtnLocator).click();
+    }
+
+    public String getRoomName() {
+        return Driver.getDriver().findElement(roomNameLocator).getText();
+    }
+
+    public String getRoomPrice() {
+        return Driver.getDriver().findElement(roomPriceLocator).getText(); // return float
     }
 }

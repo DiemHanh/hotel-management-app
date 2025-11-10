@@ -1,12 +1,9 @@
 package adminPages;
 
 import models.admin.Room;
-import models.admin.RoomType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.Driver;
-
-import java.security.PublicKey;
 
 public class AddRoomPage {
     private final By RoomNumberLocator = By.id("txtRoomNo");
@@ -24,10 +21,11 @@ public class AddRoomPage {
         enterFloor(room.getFloor());
         setStatus();
         enterDescription(room.getDescription());
+        clickSubmitButton();
     }
 
-    public void enterRoomNumber(int roomnumber) {
-        Driver.getDriver().findElement(RoomNumberLocator).sendKeys(String.valueOf(roomnumber));
+    public void enterRoomNumber(int roomNumber) {
+        Driver.getDriver().findElement(RoomNumberLocator).sendKeys(String.valueOf(roomNumber));
     }
 
     public void selectLatestRoomType() {
@@ -52,9 +50,4 @@ public class AddRoomPage {
     public void clickSubmitButton() {
         Driver.getDriver().findElement(SubmitButtonLocator).click();
     }
-
-
-
-
-
 }

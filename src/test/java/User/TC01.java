@@ -1,7 +1,6 @@
 package User;
 
 import TestBase.TestBaseUser;
-import com.github.javafaker.Faker;
 import lombok.extern.slf4j.Slf4j;
 import models.user.Payment;
 import models.user.UserInformation;
@@ -13,11 +12,9 @@ import utils.Driver;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Locale;
 
 @Slf4j
 public class TC01 extends TestBaseUser {
-    HomePage homePage = new HomePage();
     RoomListPage roomListPage = new RoomListPage();
     RoomDetailPage roomDetailPage = new RoomDetailPage();
     BookingPage bookingPage = new BookingPage();
@@ -26,7 +23,6 @@ public class TC01 extends TestBaseUser {
     CardInformation cardInfo = new CardInformation();
     TempMailPage tempMailPage = new TempMailPage();
     BasePage basePage = new BasePage();
-    Faker faker = new Faker((new Locale("vi")));
 
     LocalDate today = DateUtils.getToday();
 
@@ -57,7 +53,7 @@ public class TC01 extends TestBaseUser {
                 faker.phoneNumber().phoneNumber(),
                 faker.address().fullAddress()
         );
-        bookingPage.inputUserInfo(userInfo);
+        bookingPage.inputUserInfo(userInfo); // rename
 
         // enter credit card and pay now
         paymentPage.enterPaymentBooking(payment);
