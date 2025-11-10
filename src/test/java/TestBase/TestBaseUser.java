@@ -10,8 +10,8 @@ public class TestBaseUser extends TestBase {
         setUp(Config.URL_USER_PAGE);
     }
 
-//    @AfterMethod
-//    public void tearDownUser() {
-//        cleanUp();
-//    }
+    @AfterMethod
+    public void tearDownUser() {
+        cleanUp();
+    }
 }

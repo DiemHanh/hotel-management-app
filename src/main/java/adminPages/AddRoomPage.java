@@ -20,7 +20,7 @@ public class AddRoomPage {
 
     public void addRoom(Room room) {
         enterRoomNumber(room.getRoomNumber());
-        selectLatestRoomtype();
+        selectLatestRoomType();
         enterFloor(room.getFloor());
         setStatus();
         enterDescription(room.getDescription());
@@ -30,7 +30,7 @@ public class AddRoomPage {
         Driver.getDriver().findElement(RoomNumberLocator).sendKeys(String.valueOf(roomnumber));
     }
 
-    public void selectLatestRoomtype() {
+    public void selectLatestRoomType() {
         Driver.getDriver().findElement(RoomTypeLocator).click();
         Driver.getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(visibleRoomTypeLocator));
         var items = Driver.getDriver().findElements(RoomTypeListLocator);

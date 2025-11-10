@@ -10,9 +10,9 @@ import org.testng.annotations.Test;
 import userPages.LoginModal;
 import userPages.RoomListPage;
 import utils.AdminInformation;
+import utils.Config;
 import utils.Driver;
 import utils.UserInformation;
-import utils.Config;
 
 public class TC09 extends TestBaseAdmin {
     HomePage homePageAdmin = new HomePage();
@@ -80,6 +80,4 @@ public class TC09 extends TestBaseAdmin {
 
         sa.assertAll();
     }
-
-
 }

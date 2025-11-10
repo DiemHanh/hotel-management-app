@@ -6,7 +6,6 @@ import adminPages.AllRoomsPage;
 import adminPages.HomePage;
 import com.github.javafaker.Faker;
 import models.admin.Room;
-import models.admin.RoomType;
 import org.testng.annotations.Test;
 import utils.AdminInformation;
 
@@ -26,7 +25,7 @@ public class TC10 extends TestBaseAdmin {
     @Test
     public void TC10() {
         //1. Login as Admin
-        loginPage.login(adminInfo.username,adminInfo.password);
+        loginPage.login(adminInfo.username, adminInfo.password);
 
         //2. Expand Rooms label
         homePageAdmin.expandRoomsSection();
@@ -34,7 +33,7 @@ public class TC10 extends TestBaseAdmin {
         //3. Select Add Room option
         homePageAdmin.clickAddRoom();
 
-        //4. Enter Room infor
+        //4. Enter Room info
         addRoomPage.addRoom(roomInfo);
 
         //5. Click Submit button
@@ -44,8 +43,7 @@ public class TC10 extends TestBaseAdmin {
         allRoomsPage.searchRoom(String.valueOf(roomInfo.getRoomNumber()));
 
         // Verify actual match expected result
-        sa.assertEquals(allRoomsPage.getSearchResult(), roomInfo.getRoomNumber(), "Room Number in search result does not match expected value");
-
+        sa.assertEquals(allRoomsPage.getSearchResult(), String.valueOf(roomInfo.getRoomNumber()), "Room Number in search result does not match expected value");
 
         sa.assertAll();
     }
