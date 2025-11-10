@@ -1,6 +1,7 @@
 package userPages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utils.DateUtils;
 import utils.Driver;
 
@@ -13,7 +14,7 @@ public class RoomDetailPage {
     private final By childrenInputLocator = By.id("children");
     private final By bookNowBtnLocator = By.cssSelector("[value='Book Now']");
 
-    public void inputInformationBooking(LocalDate checkIndate, LocalDate checkOutdate, int adult, String child) {
+    public void inputInformationBooking(LocalDate checkIndate, LocalDate checkOutdate, int adult, int child) {
         enterCheckInDate(checkIndate);
         enterCheckOutDate(checkOutdate);
         enterNumberAdult(adult);
@@ -22,7 +23,7 @@ public class RoomDetailPage {
     }
 
     public void enterCheckInDate(LocalDate checkInDate) {
-        String formattedDate = (checkInDate.format(DateUtils.FORMATTER));
+        String formattedDate = checkInDate.format(DateUtils.FORMATTER);
         Driver.getDriver().findElement(checkInInputLocator).sendKeys(formattedDate);
     }
 
@@ -32,11 +33,15 @@ public class RoomDetailPage {
     }
 
     public void enterNumberAdult(int adult) {
-        Driver.getDriver().findElement(adultInputLocator).sendKeys(String.valueOf(adult));
+        WebElement adultInput = Driver.getDriver().findElement(adultInputLocator);
+        adultInput.clear();
+        adultInput.sendKeys(String.valueOf(adult));
     }
 
-    public void enterNumberChild(String child) {
-        Driver.getDriver().findElement(childrenInputLocator).sendKeys(child);
+    public void enterNumberChild(int child) {
+        WebElement childInput = Driver.getDriver().findElement(childrenInputLocator);
+        childInput.clear();
+        childInput.sendKeys(String.valueOf(child));
     }
 
     public void clickBookNowBtn() {

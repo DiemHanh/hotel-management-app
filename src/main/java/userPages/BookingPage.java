@@ -1,8 +1,7 @@
 package userPages;
 
+import models.user.UserInformation;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.Driver;
 
 public class BookingPage {
@@ -13,11 +12,11 @@ public class BookingPage {
     private final By checkboxLocator = By.xpath("//form[@id='user']//label");
     private final By submitBtnLocator = By.cssSelector("[value='Submit']");
 
-    public void inputBooking(String name, String email, String phone, String address) {
-        enterName(name);
-        enterEmail(email);
-        enterPhone(phone);
-        enterAddress(address);
+    public void inputUserInfo(UserInformation userInformation) {
+        enterName(userInformation.getName());
+        enterEmail(userInformation.getEmail());
+        enterPhone(userInformation.getPhone());
+        enterAddress(userInformation.getAddress());
         checkedBoxBtn();
         clickSubmitButton();
     }
@@ -43,12 +42,6 @@ public class BookingPage {
     }
 
     public void checkedBoxBtn() {
-        Driver.getWebDriverWait().until(ExpectedConditions.elementToBeClickable(checkboxLocator));
-        WebElement checkbox = Driver.getDriver().findElement(checkboxLocator);
-
-        // Only click if not already selected
-        if (!checkbox.isSelected()) {
-            checkbox.click();
-        }
+        Driver.getDriver().findElement(checkboxLocator).click();
     }
 }

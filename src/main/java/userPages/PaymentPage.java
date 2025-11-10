@@ -2,6 +2,7 @@ package userPages;
 
 import models.user.Payment;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utils.Driver;
 
 public class PaymentPage {
@@ -32,7 +33,9 @@ public class PaymentPage {
     }
 
     public void enterCVV(int cvv) {
-        Driver.getDriver().findElement(cvvInputLocator).sendKeys(String.valueOf(cvv));
+        WebElement cvvInput = Driver.getDriver().findElement(cvvInputLocator);
+        cvvInput.clear();
+        cvvInput.sendKeys(String.valueOf(cvv));
     }
 
     public void clickPayNowBtn() {

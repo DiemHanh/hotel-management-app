@@ -56,5 +56,7 @@ public class HomePage extends LoginModal {
     public void scrollToTopPage() {
         Driver.getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(scrollToTopLocator));
         Driver.getDriver().findElement(scrollToTopLocator).click();
+        // wait until scroll finishes
+        Driver.getWebDriverWait().until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".is-sticky")));
     }
 }
