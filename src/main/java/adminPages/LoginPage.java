@@ -8,12 +8,14 @@ public class LoginPage {
     private final By PasswordAdminLocator = By.name("password");
     private final By LoginButtonLocator = By.className("login100-form-btn");
     private final By LoginPageLocator = By.className("wrap-login100");
+
     public void login(String username, String password) {
         enterUserName(username);
         enterPassword(password);
         ClickLogInBtn();
         Driver.getWebDriverWait().until(ExpectedConditions.invisibilityOfElementLocated(LoginPageLocator));
     }
+
     public void enterUserName(String username) {
         Driver.getDriver().findElement(UserNameAdminLocator).sendKeys(username);
     }

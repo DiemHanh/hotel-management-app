@@ -43,4 +43,23 @@ public class RoomListPage {
 
         currentRoom.findElement(roomBtnToDetailLocator).click();
     }
+
+    public void clickViewDetailsByRoomName(String roomName) {
+        List<WebElement> rooms = Driver.getDriver().findElements(roomContainerLocator);
+
+        WebElement targetRoom = rooms.stream()
+                .filter(room -> {
+                    WebElement title = room.findElement(By.xpath(".//h5"));
+                    return title.getText().equalsIgnoreCase(roomName);
+                })
+                .findFirst()
+                .orElse(null);
+
+        if (targetRoom == null) {
+            System.out.println("Not found: " + roomName);
+        } else {
+            System.out.println("Room is found: " + roomName);
+            targetRoom.findElement(roomBtnToDetailLocator).click();
+        }
+    }
 }
