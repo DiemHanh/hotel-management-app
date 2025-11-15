@@ -1,4 +1,4 @@
-package userPages;
+package page.user;
 
 import models.user.UserInformation;
 import org.openqa.selenium.By;

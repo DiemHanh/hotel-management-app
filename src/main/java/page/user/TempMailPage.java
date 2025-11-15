@@ -1,4 +1,4 @@
-package userPages;
+package page.user;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

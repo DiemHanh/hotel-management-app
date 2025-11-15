@@ -4,8 +4,8 @@ import TestBase.TestBaseUser;
 import lombok.extern.slf4j.Slf4j;
 import models.user.Room;
 import org.testng.annotations.Test;
-import userPages.RoomDetailPage;
-import userPages.RoomListPage;
+import page.user.RoomDetailPage;
+import page.user.RoomListPage;
 
 import java.util.List;
 

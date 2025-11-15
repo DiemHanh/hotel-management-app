@@ -1,4 +1,4 @@
-package userPages;
+package page.user;
 
 import models.user.Room;
 import org.openqa.selenium.By;

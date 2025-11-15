@@ -4,7 +4,7 @@ import TestBase.TestBaseUser;
 import lombok.extern.slf4j.Slf4j;
 import models.user.UserInformation;
 import org.testng.annotations.Test;
-import userPages.*;
+import page.user.*;
 import utils.DateUtils;
 import utils.Driver;
 import utils.TabWindow;

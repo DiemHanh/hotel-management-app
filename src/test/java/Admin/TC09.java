@@ -5,13 +5,14 @@ import page.admin.AddRoomTypePage;
 import page.admin.AllRoomTypesPage;
 import models.admin.RoomType;
 import org.testng.annotations.Test;
-import userPages.LoginModal;
-import userPages.RoomListPage;
+import page.user.HomePage;
+import page.user.LoginModal;
+import page.user.RoomListPage;
 import utils.Config;
 import utils.Driver;
 
 public class TC09 extends TestBaseAdmin {
-    userPages.HomePage homePage = new userPages.HomePage();
+    HomePage homePage = new HomePage();
     LoginModal loginModal = new LoginModal();
     RoomListPage roomListPage = new RoomListPage();
     AddRoomTypePage addRoomTypePage = new AddRoomTypePage();
