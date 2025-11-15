@@ -1,8 +1,8 @@
 package Admin;
 
 import TestBase.TestBaseAdmin;
-import adminPages.AddRoomTypePage;
-import adminPages.AllRoomTypesPage;
+import page.admin.AddRoomTypePage;
+import page.admin.AllRoomTypesPage;
 import models.admin.RoomType;
 import org.testng.annotations.Test;
 import userPages.LoginModal;

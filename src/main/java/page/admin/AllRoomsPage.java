@@ -1,4 +1,4 @@
-package adminPages;
+package page.admin;
 
 import org.openqa.selenium.By;
 import utils.Driver;

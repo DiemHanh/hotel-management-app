@@ -1,4 +1,4 @@
-package adminPages;
+package page.admin;
 
 import models.admin.Room;
 import org.openqa.selenium.By;

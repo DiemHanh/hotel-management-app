@@ -1,7 +1,7 @@
 package TestBase;
 
-import adminPages.HomePage;
-import adminPages.LoginPage;
+import page.admin.HomePage;
+import page.admin.LoginPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
 import utils.Config;

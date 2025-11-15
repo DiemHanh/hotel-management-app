@@ -1,4 +1,4 @@
-package adminPages;
+package page.admin;
 import models.AccountSystem;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
