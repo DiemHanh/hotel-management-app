@@ -32,6 +32,10 @@ public class TempMailPage {
         Driver.getDriver().findElement(refreshBtnLocator).click();
         // wait until refresh finishes
         Driver.getWebDriverWait().until(ExpectedConditions.presenceOfElementLocated(spinnerLocator));
+
+        Driver.getDriver().findElement(refreshBtnLocator).click();
+        // wait until refresh finishes
+        Driver.getWebDriverWait().until(ExpectedConditions.presenceOfElementLocated(spinnerLocator));
         Driver.getDriver().findElement(latestMessageLocator).click();
     }
 

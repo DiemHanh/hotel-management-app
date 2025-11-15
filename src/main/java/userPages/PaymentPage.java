@@ -1,6 +1,6 @@
 package userPages;
 
-import models.user.Payment;
+import models.user.CreditCard;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.Driver;
@@ -12,11 +12,11 @@ public class PaymentPage {
     private final By cvvInputLocator = By.id("cvvcode");
     private final By payNowBtnLocator = By.xpath("//div[@id='pills-creadit']//input[@value='Pay Now']");
 
-    public void enterPaymentBooking(Payment payment) {  // submitPaymentInfo
-        enterCardNumber(payment.getCardNumber());
-        enterName(payment.getCardName());
-        enterExpiry(payment.getCardDate());
-        enterCVV(payment.getCardCVV());
+    public void enterPaymentBooking(CreditCard creditCard) {  // submitPaymentInfo
+        enterCardNumber(creditCard.getCardNumber());
+        enterName(creditCard.getCardName());
+        enterExpiry(creditCard.getCardDate());
+        enterCVV(creditCard.getCardCVV());
         clickPayNowBtn();
     }
 
@@ -32,7 +32,7 @@ public class PaymentPage {
         Driver.getDriver().findElement(expiryInputLocator).sendKeys(date);
     }
 
-    public void enterCVV(int cvv) {
+    public void enterCVV(String cvv) {
         WebElement cvvInput = Driver.getDriver().findElement(cvvInputLocator);
         cvvInput.clear();
         cvvInput.sendKeys(String.valueOf(cvv));

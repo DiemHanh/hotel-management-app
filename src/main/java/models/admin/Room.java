@@ -13,5 +13,4 @@ public class Room {
     private int floor;
     private String description;
     private Boolean status;
-
 }

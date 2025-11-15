@@ -13,6 +13,4 @@ public class RoomType {
     private int adultCapacity;
     private int childrenCapacity;
     private String description;
-
-
 }

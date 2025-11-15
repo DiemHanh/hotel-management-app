@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.asserts.SoftAssert;
+import utils.Constant;
 import utils.Driver;
 
 import java.util.Locale;
@@ -12,6 +13,7 @@ import java.util.Locale;
 public class TestBase {
     protected SoftAssert sa = new SoftAssert();
     protected Faker faker = new Faker((new Locale("vi")));
+    protected Constant constant = new Constant();
 
     public void setUp(String url) {
         ChromeOptions options = new ChromeOptions();

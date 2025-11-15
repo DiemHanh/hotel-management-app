@@ -1,5 +1,6 @@
 package userPages;
 
+import models.AccountSystem;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.Driver;
@@ -10,9 +11,9 @@ public class LoginModal {
     private final By loginButtonLocator = By.cssSelector("[value='Sign In']");
     private final By loginSignupModalLocator = By.id("login_signup");
 
-    public void login(String username, String password) {
-        enterUsername(username);
-        enterPassword(password);
+    public void login(AccountSystem accountSystem) {
+        enterUsername(accountSystem.getUsername());
+        enterPassword(accountSystem.getPassword());
         clickLoginButton();
 
         // wait until login success and close dialog

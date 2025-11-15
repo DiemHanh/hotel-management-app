@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Payment {// CreditCard
+public class CreditCard {
     private String cardNumber;
     private String cardName;
     private String cardDate; //YearMonth/MonthYear
-    private int cardCVV;// String
+    private String cardCVV;
 }

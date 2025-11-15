@@ -7,18 +7,14 @@ import models.admin.RoomType;
 import org.testng.annotations.Test;
 import userPages.LoginModal;
 import userPages.RoomListPage;
-import utils.AdminInformation;
 import utils.Config;
 import utils.Driver;
-import utils.UserInformation;
 
 public class TC09 extends TestBaseAdmin {
     userPages.HomePage homePage = new userPages.HomePage();
     LoginModal loginModal = new LoginModal();
     RoomListPage roomListPage = new RoomListPage();
     AddRoomTypePage addRoomTypePage = new AddRoomTypePage();
-    AdminInformation adminInfo = new AdminInformation();
-    UserInformation userInfo = new UserInformation();
     AllRoomTypesPage allRoomTypesPage = new AllRoomTypesPage();
 
     String title = faker.address().cityName() + " " +
@@ -35,7 +31,7 @@ public class TC09 extends TestBaseAdmin {
     public void TC09() {
 
         //1. Login as Admin
-        loginPage.login(adminInfo.username, adminInfo.password);
+        loginPage.login(constant.DEFAULT_ACCOUNT_ADMIN);
 
         //2. Expand Room Types label
         homePageAdmin.expandRoomTypesSection();
@@ -62,13 +58,13 @@ public class TC09 extends TestBaseAdmin {
         homePage.openLoginModal();
 
         //8. Login as User
-        loginModal.login(userInfo.username, userInfo.password);
+        loginModal.login(constant.DEFAULT_ACCOUNT_USER);
 
         //9. Open Rooms Page
         homePage.openRoomsPage();
 
         //10. Click on "View detail" button of newly created Room
-        roomListPage.clickViewDetailsByRoomName(roomInfo.getTitle()); // openRoomDetailByName
+        roomListPage.clickViewDetailsByRoomName(roomInfo.getTitle()); // rename to openRoomDetailByName
 // assert equal same room or not
         // verify name and price
         sa.assertAll();
