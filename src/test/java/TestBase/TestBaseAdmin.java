@@ -1,15 +1,13 @@
 package TestBase;
 
-import page.admin.HomePage;
-import page.admin.LoginPage;
+import page.admin.AdminHomePage;
+import page.admin.AdminLoginPage;
 import org.testng.annotations.BeforeMethod;
-import org.testng.asserts.SoftAssert;
 import utils.Config;
 
 public class TestBaseAdmin extends TestBase {
-    public SoftAssert sa = new SoftAssert();
-    protected LoginPage loginPage = new LoginPage();
-    protected HomePage homePageAdmin = new HomePage();
+    protected AdminLoginPage adminLoginPage = new AdminLoginPage();
+    protected AdminHomePage adminHomePageAdmin = new AdminHomePage();
 
     @BeforeMethod
     public void setUpAdmin() {
