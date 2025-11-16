@@ -1,8 +1,8 @@
 package Admin;
 
 import TestBase.TestBaseAdmin;
-import page.admin.AddRoomTypePage;
-import page.admin.AllRoomTypesPage;
+import page.admin.AdminAddRoomTypePage;
+import page.admin.AdminAllRoomTypesPageAdmin;
 import models.admin.RoomType;
 import org.testng.annotations.Test;
 import page.user.HomePage;
@@ -15,8 +15,8 @@ public class TC09 extends TestBaseAdmin {
     HomePage homePage = new HomePage();
     LoginModal loginModal = new LoginModal();
     RoomListPage roomListPage = new RoomListPage();
-    AddRoomTypePage addRoomTypePage = new AddRoomTypePage();
-    AllRoomTypesPage allRoomTypesPage = new AllRoomTypesPage();
+    AdminAddRoomTypePage adminAddRoomTypePage = new AdminAddRoomTypePage();
+    AdminAllRoomTypesPageAdmin adminAllRoomTypesPage = new AdminAllRoomTypesPageAdmin();
 
     String title = faker.address().cityName() + " " +
             faker.options().option("Deluxe Suite", "Family Room", "Presidential Villa", "Ocean View Room") + " " +
@@ -32,25 +32,25 @@ public class TC09 extends TestBaseAdmin {
     public void TC09() {
 
         //1. Login as Admin
-        loginPage.login(constant.DEFAULT_ACCOUNT_ADMIN);
+        adminLoginPage.login(constant.DEFAULT_ACCOUNT_ADMIN);
 
         //2. Expand Room Types label
-        homePageAdmin.expandRoomTypesSection();
+        adminHomePageAdmin.expandRoomTypesSection();
 
         //3. Select Add Room Type option
-        homePageAdmin.clickAddRoomType();
+        adminHomePageAdmin.clickAddRoomType();
 
         //4. Enter Room Type information
-        addRoomTypePage.addRoomType(roomInfo);
+        adminAddRoomTypePage.addRoomType(roomInfo);
 
         //6. Search for newly created Room type
-        allRoomTypesPage.searchRoomType(roomInfo.getTitle());
+        adminAllRoomTypesPage.searchRoomType(roomInfo.getTitle());
 
         // Verify actual match expected result
-        sa.assertEquals(allRoomTypesPage.getSearchResult(), roomInfo.getTitle(), "Room type title in search result does not match expected value");
+        sa.assertEquals(adminAllRoomTypesPage.getSearchResult(), roomInfo.getTitle(), "Room type title in search result does not match expected value");
 
         //7. Logout
-        allRoomTypesPage.clickLogOutButton(); // rename: logout()
+        adminAllRoomTypesPage.clickLogOutButton(); // rename: logout()
 
         //navigate to User URL
         Driver.getDriver().navigate().to(Config.URL_USER_PAGE);

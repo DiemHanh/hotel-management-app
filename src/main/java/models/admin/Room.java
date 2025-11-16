@@ -3,14 +3,16 @@ package models.admin;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Room {
-    private int roomNumber;
-    private String roomType;
-    private int floor;
-    private String description;
-    private Boolean status;
+    public int roomNumber;
+    public String roomType;
+    public int floor;
+    public String description;
+    public Boolean status;
 }
