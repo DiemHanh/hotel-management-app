@@ -4,10 +4,16 @@ import models.AccountSystem;
 import models.user.CreditCard;
 
 public class Constant {
+//    public final static CreditCard DEFAULT_CREDIT_CARD = new CreditCard(
+//            "2222 3333 4444 5555",
+//            "JOHN HENRY",
+//            "1225",
+//            "123"
+//    );
     public final static CreditCard DEFAULT_CREDIT_CARD = new CreditCard(
-            "2222 3333 4444 5555",
-            "JOHN HENRY",
-            "1225",
+            "1111 2222 3333 4444",
+            "CHERRY PHUONG",
+            "1030",
             "123"
     );
 

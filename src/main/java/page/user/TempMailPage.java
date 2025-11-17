@@ -25,7 +25,7 @@ public class TempMailPage {
         ArrayList<String> tabs = new ArrayList<>(Driver.getDriver().getWindowHandles());
 
         Driver.getDriver().switchTo().window(tabs.get(tabs.size() - 1));
-        Driver.getDriver().get(Config.URL_TEMP_MAIL_PAGE);
+        Driver.getDriver().get(Config.URL_YOP_MAIL_PAGE);
     }
 
     public void openLatestEmail() {

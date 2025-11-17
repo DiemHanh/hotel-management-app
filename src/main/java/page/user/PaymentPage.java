@@ -12,7 +12,7 @@ public class PaymentPage {
     private final By cvvInputLocator = By.id("cvvcode");
     private final By payNowBtnLocator = By.xpath("//div[@id='pills-creadit']//input[@value='Pay Now']");
 
-    public void enterPaymentBooking(CreditCard creditCard) {  // submitPaymentInfo
+    public void submitPaymentBooking(CreditCard creditCard) {
         enterCardNumber(creditCard.getCardNumber());
         enterName(creditCard.getCardName());
         enterExpiry(creditCard.getCardDate());

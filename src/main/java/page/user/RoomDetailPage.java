@@ -1,5 +1,7 @@
 package page.user;
 
+import models.user.BookingInformation;
+import models.user.Room;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.DateUtils;
@@ -16,11 +18,11 @@ public class RoomDetailPage {
     private final By roomNameLocator = By.cssSelector("h3.float-left");
     private final By roomPriceLocator = By.cssSelector(".yemm_top_price > strong");
 
-    public void inputInformationBooking(LocalDate checkIndate, LocalDate checkOutdate, int adult, int child) {
-        enterCheckInDate(checkIndate);
-        enterCheckOutDate(checkOutdate);
-        enterNumberAdult(adult);
-        enterNumberChild(child);
+    public void submitInformationBooking(BookingInformation bookingInformation) {
+        enterCheckInDate(bookingInformation.getCheckIndate());
+        enterCheckOutDate(bookingInformation.getCheckOutdate());
+        enterNumberAdult(bookingInformation.getAdult());
+        enterNumberChild(bookingInformation.getChild());
         clickBookNowBtn();
     }
 
@@ -54,7 +56,11 @@ public class RoomDetailPage {
         return Driver.getDriver().findElement(roomNameLocator).getText();
     }
 
-    public String getRoomPrice() {
-        return Driver.getDriver().findElement(roomPriceLocator).getText(); // return float
+    public Float getRoomPrice() {
+        return Float.parseFloat(Driver.getDriver().findElement(roomPriceLocator).getText().substring(1));
+    }
+
+    public Room getRoomDetail() {
+        return new Room(getRoomName(), getRoomPrice());
     }
 }
