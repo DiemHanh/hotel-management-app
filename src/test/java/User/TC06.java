@@ -26,10 +26,7 @@ public class TC06 extends TestBaseUser {
 
         roomListPage.openRoomDetailByIndex(randomNumber);
 
-        Room roomDetail = new Room(
-                roomDetailPage.getRoomName(),
-                Float.parseFloat(roomDetailPage.getRoomPrice().substring(1))
-        ); // return a room
+        Room roomDetail = roomDetailPage.getRoomDetail();
 
         sa.assertEquals(randomRoom, roomDetail);
         sa.assertAll();

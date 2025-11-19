@@ -1,6 +1,6 @@
 package utils;
 
-import models.AccountSystem;
+import models.Account;
 import models.user.CreditCard;
 
 public class Constant {
@@ -10,13 +10,19 @@ public class Constant {
             "1225",
             "123"
     );
+//    public final static CreditCard DEFAULT_CREDIT_CARD = new CreditCard(
+//            "1111222233334444",
+//            "CHERRY PHUONG",
+//            "1030",
+//            "123"
+//    );
 
-    public final static AccountSystem DEFAULT_ACCOUNT_ADMIN = new AccountSystem(
+    public final static Account DEFAULT_ACCOUNT_ADMIN = new Account(
             "admin",
             "123456"
     );
 
-    public final static AccountSystem DEFAULT_ACCOUNT_USER = new AccountSystem(
+    public final static Account DEFAULT_ACCOUNT_USER = new Account(
             "nhi123",
             "nhi123"
     );

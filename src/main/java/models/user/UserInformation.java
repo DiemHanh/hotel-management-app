@@ -12,4 +12,10 @@ public class UserInformation {
     private String email;
     private String phone;
     private String address;
+
+
+    @Override
+    public String toString() {
+        return "User {name='" + name + "', email=" + email + "', phone=" + phone + "', address=" + address + "}";
+    }
 }

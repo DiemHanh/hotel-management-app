@@ -2,15 +2,17 @@ package User;
 
 import TestBase.TestBaseUser;
 import lombok.extern.slf4j.Slf4j;
+import models.user.BookingInformation;
 import models.user.UserInformation;
 import org.testng.annotations.Test;
+import page.email.YopMail;
 import page.user.*;
+import utils.Constant;
 import utils.DateUtils;
-import utils.Driver;
+import utils.FakerData;
 import utils.TabWindow;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 @Slf4j
 public class TC01 extends TestBaseUser {
@@ -19,11 +21,11 @@ public class TC01 extends TestBaseUser {
     BookingPage bookingPage = new BookingPage();
     PaymentPage paymentPage = new PaymentPage();
     ConfirmPage confirmPage = new ConfirmPage();
-    TempMailPage tempMailPage = new TempMailPage();
+    YopMail yopmail = new YopMail();
     TabWindow tabWindow = new TabWindow();
 
     LocalDate today = DateUtils.getToday();
-
+    UserInformation userInfo = FakerData.generateRandomUser();
 
     @Test
     public void TC01() {
@@ -31,38 +33,33 @@ public class TC01 extends TestBaseUser {
 
         // open random room at detail page
 //        roomListPage.openRoomDetailByIndex(faker.number().numberBetween(1, 6));
-        roomListPage.openRoomDetailByIndex(2);
+        roomListPage.openRoomDetailByIndex(4);
 
         // enter booking info
 //        roomDetailPage.inputInformationBooking(today, DateUtils.getFollowingDay(today), faker.number().numberBetween(1, 3), faker.number().numberBetween(1, 3));
-        roomDetailPage.inputInformationBooking(today, DateUtils.getFollowingDay(today), 1, 0);
+        roomDetailPage.submitInformationBooking(new BookingInformation(today, DateUtils.getFollowingDay(today), 1, 0));
 
-        // open temp mail page in a new tab to get email
-        String email = tempMailPage.getEmail();
-
+        // open yop mail page in a new tab
+        yopmail.openYopMailPageInNewTab();
+        yopmail.openInboxMail(userInfo.getEmail());
+        log.info(userInfo.getEmail());
         // back to booking tab
         tabWindow.switchBackToOriginalTab();
 
         // enter personal info and checkbox
-        UserInformation userInfo = new UserInformation(
-                faker.name().fullName().toString(),
-                email,
-                faker.phoneNumber().phoneNumber(),
-                faker.address().fullAddress()
-        );
-        bookingPage.inputUserInfo(userInfo); // rename
+        bookingPage.submitUserInfo(userInfo);
 
         // enter credit card and pay now
-        paymentPage.enterPaymentBooking(constant.DEFAULT_CREDIT_CARD);
+        paymentPage.submitPaymentBooking(Constant.DEFAULT_CREDIT_CARD);
 
         // confirm page
         sa.assertEquals(confirmPage.getSuccessMessage(), "Thank you! Your booking has been placed. We will contact you to confirm about the booking soon.");
 
         // switch to email tab
-        ArrayList<String> tabs = new ArrayList<>(Driver.getDriver().getWindowHandles());
-        Driver.getDriver().switchTo().window(tabs.get(tabs.size() - 1));
-        tempMailPage.openLatestEmail();
-        log.info(tempMailPage.getSubjectEmail());
+        tabWindow.switchToLastTab();
+        // close advertise
+        yopmail.refreshInboxMail();
+//        log.info(tempMailPage.getSubjectEmail());
 
         sa.assertAll();
     }
