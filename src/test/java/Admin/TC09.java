@@ -9,6 +9,7 @@ import page.user.HomePage;
 import page.user.LoginModal;
 import page.user.RoomListPage;
 import utils.Config;
+import utils.Constant;
 import utils.Driver;
 
 public class TC09 extends TestBaseAdmin {
@@ -32,7 +33,7 @@ public class TC09 extends TestBaseAdmin {
     public void TC09() {
 
         //1. Login as Admin
-        adminLoginPage.login(constant.DEFAULT_ACCOUNT_ADMIN);
+        adminLoginPage.login(Constant.DEFAULT_ACCOUNT_ADMIN);
 
         //2. Expand Room Types label
         adminHomePageAdmin.expandRoomTypesSection();
@@ -59,14 +60,14 @@ public class TC09 extends TestBaseAdmin {
         homePage.openLoginModal();
 
         //8. Login as User
-        loginModal.login(constant.DEFAULT_ACCOUNT_USER);
+        loginModal.login(Constant.DEFAULT_ACCOUNT_USER);
 
         //9. Open Rooms Page
         homePage.openRoomsPage();
 
         //10. Click on "View detail" button of newly created Room
         roomListPage.clickViewDetailsByRoomName(roomInfo.getTitle()); // rename to openRoomDetailByName
-// assert equal same room or not
+        // assert equal same room or not
         // verify name and price
         sa.assertAll();
     }

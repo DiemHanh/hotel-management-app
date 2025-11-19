@@ -10,7 +10,7 @@ public class AdminAddRoomPage {
     private final By roomNumberLocator = By.id("txtRoomNo");
     private final By roomTypeLocator = By.id("list1");
     private final By roomTypeListLocator = By.cssSelector("[data-mdl-for='list1'] li.mdl-menu__item:not([disabled])");
-    private final By visibleroomTypeLocator = By.cssSelector("[class=\"mdl-menu__container is-upgraded is-visible\"]");
+    private final By visibleRoomTypeLocator = By.cssSelector("[class=\"mdl-menu__container is-upgraded is-visible\"]");
     private final By floorLocator = By.id("floor");
     private final By statusLocator = By.xpath("//input[@name='status']");
     private final By sliderLocator = By.xpath("//label[@class='switchToggle']");
@@ -19,14 +19,15 @@ public class AdminAddRoomPage {
 
     public void addRoom(Room room) {
         enterRoomNumber(room.getRoomNumber());
+
         String selectedType = selectLatestRoomType();
-//        System.out.println("Selected Room Type: " + selectedType);
         room.setRoomType(selectedType);
+
         enterFloor(room.getFloor());
-//        System.out.println("floor: " + room.floor);
+
         boolean selectedStatus = activateStatus();
         room.setStatus(selectedStatus);
-//        System.out.println("selectedStatus: " + selectedStatus);
+
         enterDescription(room.getDescription());
         clickSubmitButton();
     }
@@ -38,7 +39,7 @@ public class AdminAddRoomPage {
 
     public String selectLatestRoomType() {
         Driver.getDriver().findElement(roomTypeLocator).click();
-        Driver.getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(visibleroomTypeLocator));
+        Driver.getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(visibleRoomTypeLocator));
 
         var items = Driver.getDriver().findElements(roomTypeListLocator);
         WebElement lastItem = items.get(items.size() - 1);
