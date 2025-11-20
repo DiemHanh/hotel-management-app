@@ -1,17 +1,57 @@
 package page.admin;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.Driver;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdminAllRoomTypesPageAdmin extends AdminHomePage {
     private final By searchLocator = By.cssSelector("[type=\"search\"]");
-    private final By firstResultTitleLocator = By.cssSelector("table tbody tr:first-child td.center.sorting_1"); // change to //table/tbody//tr[1]/td[1]
+    private final By headerLocator = By.xpath("//table/thead//th");
+    private final By firstRowLocator = By.xpath("//table/tbody/tr[1]");
 
     public void searchRoomType(String room) {
-        Driver.getDriver().findElement(searchLocator).sendKeys(room);
+        WebElement search = Driver.getWebDriverWait()
+                .until(ExpectedConditions.elementToBeClickable(searchLocator));
+        search.clear();
+        search.sendKeys(room);
+        Driver.getWebDriverWait()
+                .until(ExpectedConditions.visibilityOfElementLocated(firstRowLocator));
+    }
+    public By getCellLocator(int row, int col) {
+        String cellXpath = String.format("//table/tbody/tr[%d]/td[%d]", row, col);
+        return By.xpath(cellXpath);
+    }
+    public String getSearchResult(String columnName, int compareRow) {
+        Driver.getWebDriverWait()
+                .until(ExpectedConditions.visibilityOfElementLocated(firstRowLocator));
+        int maxRetry = 3;
+
+        for (int attempt = 1; attempt <= maxRetry; attempt++) {
+            try {
+                List<WebElement> columns = Driver.getDriver().findElements(headerLocator);
+                List<String> columnTexts = columns.stream()
+                        .map(WebElement::getText)
+                        .map(String::trim)
+                        .collect(Collectors.toList());
+                int colIdx = columnTexts.indexOf(columnName.trim()) + 1;
+                if (colIdx == 0) {
+                    throw new RuntimeException(String.format(
+                            "Column not found: %s | Headers = %s", columnName, columnTexts));
+                }
+                WebElement cell = Driver.getDriver().findElement(getCellLocator(compareRow, colIdx));
+                return cell.getText().trim();
+            } catch (StaleElementReferenceException e) {
+                if (attempt == maxRetry) {
+                    throw e;
+                }
+            }
+        }
+        throw new RuntimeException("Unable to get search result after retries");
     }
 
-    public String getSearchResult() {
-        return Driver.getDriver().findElement(firstResultTitleLocator).getText();
-    }
 }
