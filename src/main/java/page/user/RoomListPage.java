@@ -44,7 +44,7 @@ public class RoomListPage {
         currentRoom.findElement(roomBtnToDetailLocator).click();
     }
 
-    public void clickViewDetailsByRoomName(String roomName) {
+    public void openRoomDetailByName(String roomName) {
         List<WebElement> rooms = Driver.getDriver().findElements(roomContainerLocator);
 
         WebElement targetRoom = rooms.stream()

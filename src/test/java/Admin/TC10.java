@@ -12,9 +12,10 @@ import utils.FakerData;
 public class TC10 extends TestBaseAdmin {
     AdminAddRoomPage adminAddRoomPage = new AdminAddRoomPage();
     AdminAllRoomsPage adminAllRoomsPage = new AdminAllRoomsPage();
-
+    int searchRow = 1;
+    
     Room randomRoom = FakerData.generateRandomRoom();
-
+    
     @Test
     public void TC10() {
         //1. Login as Admin
@@ -24,7 +25,7 @@ public class TC10 extends TestBaseAdmin {
         adminHomePageAdmin.expandRoomsSection();
 
         //3. Select Add Room option
-        adminHomePageAdmin.clickAddRoom(); // rename
+        adminHomePageAdmin.navigateToAddRoomDetail();
 
         //4. Enter Room info
         adminAddRoomPage.addRoom(randomRoom);
@@ -33,16 +34,16 @@ public class TC10 extends TestBaseAdmin {
         adminAllRoomsPage.searchRoom(String.valueOf(randomRoom.getRoomNumber()));
 
         // Verify actual match expected result
-        sa.assertEquals(adminAllRoomsPage.getSearchResult("Room Number", 1),
+        sa.assertEquals(adminAllRoomsPage.getSearchResult("Room Number", searchRow),
                 String.valueOf(randomRoom.getRoomNumber()), "Room Number Not Match");
 
-        sa.assertEquals(adminAllRoomsPage.getSearchResult("Room Type", 1),
+        sa.assertEquals(adminAllRoomsPage.getSearchResult("Room Type", searchRow),
                 randomRoom.getRoomType(), "Room Type Not match");
 
-        sa.assertEquals(adminAllRoomsPage.getSearchResult("Floor", 1),
+        sa.assertEquals(adminAllRoomsPage.getSearchResult("Floor", searchRow),
                 String.valueOf(randomRoom.getFloor()), "Floor Not Match");
 
-        sa.assertEquals(adminAllRoomsPage.getStatusAsBoolean(1), randomRoom.getStatus().booleanValue(),
+        sa.assertEquals(adminAllRoomsPage.getStatusAsBoolean(searchRow), randomRoom.getStatus().booleanValue(),
                 "Incorrect Status");
 
         sa.assertAll();

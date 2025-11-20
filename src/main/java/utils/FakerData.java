@@ -2,6 +2,7 @@ package utils;
 
 import com.github.javafaker.Faker;
 import models.admin.Room;
+import models.admin.RoomType;
 import models.user.UserInformation;
 
 public class FakerData {
@@ -12,6 +13,18 @@ public class FakerData {
         int floor = faker.number().numberBetween(1, 10);
         String description = faker.lorem().sentence(10);
         return new Room(roomNumber, null, floor, description, null);
+    }
+
+    public static RoomType generateRandomRoomType() {
+        String title = String.format("%s %s %d",
+                faker.address().cityName(),
+                faker.options().option("Deluxe Suite", "Family Room", "Presidential Villa", "Ocean View Room"),
+                faker.number().numberBetween(1, 9999));
+        int price = faker.number().numberBetween(50, 500);
+        int adultNumber = faker.number().numberBetween(1, 4);
+        int childrenNumber = faker.number().numberBetween(1, 5);
+        String description = faker.lorem().sentence(3);
+        return new RoomType(title, price, adultNumber, childrenNumber, description);
     }
 
     public static UserInformation generateRandomUser() {
