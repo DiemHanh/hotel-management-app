@@ -1,16 +1,28 @@
 package models.admin;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoomType {
     private String title;
-    private int price;
+    private double price;
+    private String description;
     private int adultCapacity;
     private int childrenCapacity;
-    private String description;
+
+    @Override
+    public String toString() {
+        return "RoomType{" +
+                "price=" + price +
+                ", description='" + description + '\'' +
+                ", adultCapacity=" + adultCapacity +
+                ", childrenCapacity=" + childrenCapacity +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }

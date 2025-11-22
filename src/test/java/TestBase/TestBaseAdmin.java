@@ -7,7 +7,7 @@ import utils.Config;
 
 public class TestBaseAdmin extends TestBase {
     protected AdminLoginPage adminLoginPage = new AdminLoginPage();
-    protected AdminHomePage adminHomePageAdmin = new AdminHomePage();
+    protected AdminHomePage adminHomePage = new AdminHomePage();
 
     @BeforeMethod
     public void setUpAdmin() {

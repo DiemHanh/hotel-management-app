@@ -11,6 +11,13 @@ public class DateUtils {
         return date.plusDays(1);
     }
 
+    public static String formatExpiryDate(int month, int year) {
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("M/yy");
+
+        YearMonth yearMonth = YearMonth.of(year, month);
+        return yearMonth.format(outputFormatter);
+    }
+
     public static LocalDate getToday() {
         return LocalDate.now();
     }

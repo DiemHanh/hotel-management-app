@@ -22,10 +22,10 @@ public class TC10 extends TestBaseAdmin {
         adminLoginPage.login(Constant.DEFAULT_ACCOUNT_ADMIN);
 
         //2. Expand Rooms label
-        adminHomePageAdmin.expandRoomsSection();
+        adminHomePage.expandRoomsSection();
 
         //3. Select Add Room option
-        adminHomePageAdmin.navigateToAddRoomDetail();
+        adminHomePage.navigateToAddRoomDetail();
 
         //4. Enter Room info
         adminAddRoomPage.addRoom(randomRoom);
@@ -33,18 +33,9 @@ public class TC10 extends TestBaseAdmin {
         //5. Search for newly created Room
         adminAllRoomsPage.searchRoom(String.valueOf(randomRoom.getRoomNumber()));
 
-        // Verify actual match expected result
-        sa.assertEquals(adminAllRoomsPage.getSearchResult("Room Number", searchRow),
-                String.valueOf(randomRoom.getRoomNumber()), "Room Number Not Match");
-
-        sa.assertEquals(adminAllRoomsPage.getSearchResult("Room Type", searchRow),
-                randomRoom.getRoomType(), "Room Type Not match");
-
-        sa.assertEquals(adminAllRoomsPage.getSearchResult("Floor", searchRow),
-                String.valueOf(randomRoom.getFloor()), "Floor Not Match");
-
-        sa.assertEquals(adminAllRoomsPage.getStatusAsBoolean(searchRow), randomRoom.getStatus().booleanValue(),
-                "Incorrect Status");
+        //6. Verify actual match expected result > no description in RoomTable > set Description = ""
+        sa.assertEquals(adminAllRoomsPage.getRoomByIndex(searchRow).toString(),
+                randomRoom.toString(), "Room in search result does not match expected value");
 
         sa.assertAll();
     }

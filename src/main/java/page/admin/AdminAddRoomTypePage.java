@@ -27,7 +27,7 @@ public class AdminAddRoomTypePage {
         Driver.getDriver().findElement(titleLocator).sendKeys(title);
     }
 
-    public void enterPrice(int price) {
+    public void enterPrice(double price) {
         Driver.getDriver().findElement(priceLocator).sendKeys(String.valueOf(price));
     }
 
