@@ -18,7 +18,6 @@ public class Room {
                 "roomNumber=" + roomNumber +
                 ", roomType='" + roomType + '\'' +
                 ", floor=" + floor +
-                ", description='" + description + '\'' +
                 ", status=" + status +
                 '}';
     }

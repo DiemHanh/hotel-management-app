@@ -1,11 +1,8 @@
 package page.admin;
 
-import models.admin.CreditCard;
-import models.admin.Room;
+import models.admin.AdminCreditCard;
 import org.openqa.selenium.By;
 import utils.Driver;
-
-import java.math.BigDecimal;
 
 public class AdminAddCreditCardPage {
     private final By creditCardNumberLocator = By.id("number");
@@ -16,13 +13,13 @@ public class AdminAddCreditCardPage {
     private final By balanceLocator = By.id("balance");
     private final By submitBtnLocator = By.cssSelector("[type=\"submit\"]");
 
-    public void addCreditCard(CreditCard creditCard) {
-        enterCreditCardNumber(creditCard.getCreditCardNumber());
-        enterOwnerName(creditCard.getOwnerName());
-        enterExpiryMonth(creditCard.getExpiryMonth());
-        enterExpiryYear(creditCard.getExpiryYear());
-        enterCvvCode(creditCard.getCvvCode());
-        enterBalance(creditCard.getBalance());
+    public void addCreditCard(AdminCreditCard adminCreditCard) {
+        enterCreditCardNumber(adminCreditCard.getCreditCardNumber());
+        enterOwnerName(adminCreditCard.getOwnerName());
+        enterExpiryMonth(adminCreditCard.getExpiryMonth());
+        enterExpiryYear(adminCreditCard.getExpiryYear());
+        enterCvvCode(adminCreditCard.getCvvCode());
+        enterBalance(adminCreditCard.getBalance());
         clickSubmitButton();
     }
 

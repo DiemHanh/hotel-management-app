@@ -13,6 +13,14 @@ public class PaymentPage {
     private final By expiryInputLocator = By.name("expiry");
     private final By cvvInputLocator = By.id("cvvcode");
     private final By payNowBtnLocator = By.xpath("//div[@id='pills-creadit']//input[@value='Pay Now']");
+    private final By balanceMsgLocator = By.className("dic_msg");
+
+    public String getInsufficientBalanceMessage() {
+        return Driver.getWebDriverWait()
+                .until(ExpectedConditions.visibilityOfElementLocated(balanceMsgLocator))
+                .getText()
+                .trim();
+    }
 
     public void submitPaymentBooking(CreditCard creditCard) {
         Driver.getWebDriverWait().until(ExpectedConditions.textToBe(checkoutTitlePage, "Checkout"));

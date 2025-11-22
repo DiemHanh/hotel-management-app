@@ -34,7 +34,6 @@ public class TC10 extends TestBaseAdmin {
         adminAllRoomsPage.searchRoom(String.valueOf(randomRoom.getRoomNumber()));
 
         //6. Verify actual match expected result > no description in RoomTable > set Description = ""
-        randomRoom.setDescription("");
         sa.assertEquals(adminAllRoomsPage.getRoomByIndex(searchRow).toString(),
                 randomRoom.toString(), "Room in search result does not match expected value");
 

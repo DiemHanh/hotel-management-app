@@ -1,16 +1,12 @@
 package page.admin;
 
-import models.admin.CreditCard;
-import models.admin.RoomType;
+import models.admin.AdminCreditCard;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.CreditCardTable;
 import utils.Driver;
-import utils.RoomTable;
-import utils.RoomTypeTable;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -87,8 +83,8 @@ public class AdminViewAllCreditCardPage extends AdminHomePage {
         return Double.parseDouble(getSearchResult(CreditCardTable.BALANCE, row));
     }
 
-    public CreditCard getCreditCardByIndex(int row) {
-        CreditCard c = new CreditCard(
+    public AdminCreditCard getCreditCardByIndex(int row) {
+        AdminCreditCard c = new AdminCreditCard(
                 getCreditCardNumberByRowIndex(row),
                 getOwnerNameByRowIndex(row),
                 getExpiryMonthByRowIndex(row),
