@@ -1,12 +1,8 @@
 package models.admin;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Room {
@@ -15,4 +11,15 @@ public class Room {
     public int floor;
     public String description;
     public Boolean status;
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "roomNumber=" + roomNumber +
+                ", roomType='" + roomType + '\'' +
+                ", floor=" + floor +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }

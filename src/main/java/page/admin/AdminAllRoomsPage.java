@@ -1,10 +1,14 @@
 package page.admin;
 
+import models.admin.Room;
+import models.admin.RoomType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.Driver;
+import utils.RoomTable;
+import utils.RoomTypeTable;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,36 +32,55 @@ public class AdminAllRoomsPage {
         return By.xpath(cellXpath);
     }
 
-    public String getSearchResult(String columnName, int compareRow) {
+    private String getSearchResult(RoomTable column, int compareRow) {
         Driver.getWebDriverWait()
                 .until(ExpectedConditions.visibilityOfElementLocated(firstRowLocator));
-        int maxRetry = 3;
 
-        for (int attempt = 1; attempt <= maxRetry; attempt++) {
-            try {
-                List<WebElement> columns = Driver.getDriver().findElements(headerLocator);
-                List<String> columnTexts = columns.stream()
-                        .map(WebElement::getText)
-                        .map(String::trim)
-                        .collect(Collectors.toList());
-                int colIdx = columnTexts.indexOf(columnName.trim()) + 1;
-                if (colIdx == 0) {
-                    throw new RuntimeException(String.format(
-                            "Column not found: %s | Headers = %s", columnName, columnTexts));
-                }
-                WebElement cell = Driver.getDriver().findElement(getCellLocator(compareRow, colIdx));
-                return cell.getText().trim();
-            } catch (StaleElementReferenceException e) {
-                if (attempt == maxRetry) {
-                    throw e;
-                }
-            }
+        // get header list
+        List<String> headers = Driver.getDriver()
+                .findElements(headerLocator)
+                .stream()
+                .map(e -> e.getText().trim())
+                .collect(Collectors.toList());
+
+        // get index column
+        int colIdx = headers.indexOf(column.getValue()) + 1;
+        if (colIdx == 0) {
+            throw new IllegalStateException(
+                    String.format("Column not found for header: %s", column.getValue())
+            );
         }
-        throw new RuntimeException("Unable to get search result after retries");
+
+        // get cell value
+        return Driver.getDriver()
+                .findElement(getCellLocator(compareRow, colIdx))
+                .getText();
     }
 
-    public boolean getStatusAsBoolean(int compareRow) {
-        String uiStatus = getSearchResult("Status", compareRow);
+    public int getRoomNumberByRowIndex(int row) {
+        return Integer.parseInt(getSearchResult(RoomTable.ROOM_NUMBER, row));
+    }
+
+    public String getRoomTypeByRowIndex(int row) {
+        return getSearchResult(RoomTable.ROOM_TYPE, row);
+    }
+
+    public int getFloorByRowIndex(int row) {
+        return Integer.parseInt(getSearchResult(RoomTable.FLOOR, row));
+    }
+
+    public boolean getStatusAsBoolean(int row) {
+        String uiStatus = getSearchResult(RoomTable.STATUS, row);
         return uiStatus.equalsIgnoreCase("Active") || uiStatus.equals("1");
+    }
+
+    public Room getRoomByIndex(int row) {
+        Room r = new Room(
+                getRoomNumberByRowIndex(row),
+                getRoomTypeByRowIndex(row),
+                getFloorByRowIndex(row),
+                "",
+                getStatusAsBoolean(row));
+        return r;
     }
 }
