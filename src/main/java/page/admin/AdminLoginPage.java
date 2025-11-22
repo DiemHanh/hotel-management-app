@@ -13,7 +13,7 @@ public class AdminLoginPage {
     public void login(Account account) {
         enterUserName(account.getUsername());
         enterPassword(account.getPassword());
-        ClickLogInBtn();
+        clickLoginBtn();
         Driver.getWebDriverWait().until(ExpectedConditions.invisibilityOfElementLocated(loginPageLocator));
     }
 
@@ -25,7 +25,7 @@ public class AdminLoginPage {
         Driver.getDriver().findElement(passwordAdminLocator).sendKeys(password);
     }
 
-    public void ClickLogInBtn() {
+    public void clickLoginBtn() {
         Driver.getDriver().findElement(loginButtonLocator).click();
     }
 }

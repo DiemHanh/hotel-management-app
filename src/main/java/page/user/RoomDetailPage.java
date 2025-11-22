@@ -18,7 +18,7 @@ public class RoomDetailPage {
     private final By roomNameLocator = By.cssSelector("h3.float-left");
     private final By roomPriceLocator = By.cssSelector(".yemm_top_price > strong");
 
-    public void submitInformationBooking(BookingInformation bookingInformation) {
+    public void submitBookingInformation(BookingInformation bookingInformation) {
         enterCheckInDate(bookingInformation.getCheckIndate());
         enterCheckOutDate(bookingInformation.getCheckOutdate());
         enterNumberAdult(bookingInformation.getAdult());

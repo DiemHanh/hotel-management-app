@@ -22,10 +22,12 @@ public class BookingPage {
     }
 
     public void enterName(String username) {
+        Driver.getDriver().findElement(nameInputLocator).clear();
         Driver.getDriver().findElement(nameInputLocator).sendKeys(username);
     }
 
     public void enterEmail(String email) {
+        Driver.getDriver().findElement(emailInputLocator).clear();
         Driver.getDriver().findElement(emailInputLocator).sendKeys(email);
     }
 
