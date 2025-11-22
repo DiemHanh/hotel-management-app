@@ -46,7 +46,6 @@ public class AdminAddRoomPage {
         Driver.getWebDriverWait().until(driver -> !lastItem.getText().trim().isEmpty());
         String selectedType = lastItem.getText().trim();
         lastItem.click();
-
         return selectedType;
     }
 
@@ -58,11 +57,9 @@ public class AdminAddRoomPage {
 
     public boolean activateStatus() {
         WebElement input = Driver.getDriver().findElement(statusLocator);
-
         if (!input.isSelected()) {
             Driver.getDriver().findElement(sliderLocator).click();
         }
-
         // return status true/false
         return Driver.getDriver().findElement(statusLocator).isSelected();
     }

@@ -1,10 +1,12 @@
 package page.admin;
 
+import models.admin.RoomType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.Driver;
+import utils.RoomTypeTable;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,36 +24,63 @@ public class AdminAllRoomTypesPageAdmin extends AdminHomePage {
         Driver.getWebDriverWait()
                 .until(ExpectedConditions.visibilityOfElementLocated(firstRowLocator));
     }
+
     public By getCellLocator(int row, int col) {
         String cellXpath = String.format("//table/tbody/tr[%d]/td[%d]", row, col);
         return By.xpath(cellXpath);
     }
-    public String getSearchResult(String columnName, int compareRow) {
+
+    public String getTitleByRowIndex(int row) {
+        return getSearchResult(RoomTypeTable.TITLE, row);
+    }
+
+    public int getAdultCapacityByRowIndex(int row) {
+        return Integer.parseInt(getSearchResult(RoomTypeTable.ADULT_CAPACITY, row));
+    }
+
+    public int getChildrenCapacityByRowIndex(int row) {
+        return Integer.parseInt(getSearchResult(RoomTypeTable.CHILDREN_CAPACITY, row));
+    }
+
+    public double getPriceByRowIndex(int row) {
+        return Double.parseDouble(getSearchResult(RoomTypeTable.PRICE, row));
+    }
+
+    public RoomType getRoomTypeByIndex(int row) {
+        RoomType r = new RoomType(
+                getTitleByRowIndex(row),
+                getPriceByRowIndex(row),
+                "",
+                getAdultCapacityByRowIndex(row),
+                getChildrenCapacityByRowIndex(row)
+        );
+
+        return r;
+    }
+
+    private String getSearchResult(RoomTypeTable column, int compareRow) {
         Driver.getWebDriverWait()
                 .until(ExpectedConditions.visibilityOfElementLocated(firstRowLocator));
-        int maxRetry = 3;
 
-        for (int attempt = 1; attempt <= maxRetry; attempt++) {
-            try {
-                List<WebElement> columns = Driver.getDriver().findElements(headerLocator);
-                List<String> columnTexts = columns.stream()
-                        .map(WebElement::getText)
-                        .map(String::trim)
-                        .collect(Collectors.toList());
-                int colIdx = columnTexts.indexOf(columnName.trim()) + 1;
-                if (colIdx == 0) {
-                    throw new RuntimeException(String.format(
-                            "Column not found: %s | Headers = %s", columnName, columnTexts));
-                }
-                WebElement cell = Driver.getDriver().findElement(getCellLocator(compareRow, colIdx));
-                return cell.getText().trim();
-            } catch (StaleElementReferenceException e) {
-                if (attempt == maxRetry) {
-                    throw e;
-                }
-            }
+        // get header list
+        List<String> headers = Driver.getDriver()
+                .findElements(headerLocator)
+                .stream()
+                .map(e -> e.getText().trim())
+                .collect(Collectors.toList());
+
+        // get index column
+        int colIdx = headers.indexOf(column.getValue()) + 1;
+        if (colIdx == 0) {
+            throw new IllegalStateException(
+                    String.format("Column not found for header: %s", column.getValue())
+            );
         }
-        throw new RuntimeException("Unable to get search result after retries");
+
+        // get cell value
+        return Driver.getDriver()
+                .findElement(getCellLocator(compareRow, colIdx))
+                .getText();
     }
 
 }

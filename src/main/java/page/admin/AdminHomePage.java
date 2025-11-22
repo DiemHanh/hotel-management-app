@@ -10,6 +10,8 @@ public class AdminHomePage {
     private final By roomsLabelLocator = By.xpath("//span[@class='title' and normalize-space()='Rooms']\n");
     private final By addRoomLocator = By.linkText("Add Room");
     private final By logOutButtonLocator = By.cssSelector("[data-original-title=\"Logout\"]");
+    private final By creditCardLabelLocator = By.xpath("//span[text()='CreditCard']");
+    private final By addCreditCardLocator = By.linkText("Add CreditCard");
 
     public void expandRoomTypesSection() {
         if (Driver.getDriver().findElements(addRoomTypeLocator).isEmpty()) {
@@ -19,7 +21,7 @@ public class AdminHomePage {
                 .until(ExpectedConditions.visibilityOfElementLocated(addRoomTypeLocator));
     }
 
-    public void clickAddRoomType() {
+    public void navigateToAddRoomTypeDetail() {
         Driver.getDriver().findElement(addRoomTypeLocator).click();
     }
 
@@ -34,6 +36,18 @@ public class AdminHomePage {
     public void navigateToAddRoomDetail() {
         Driver.getDriver().findElement(addRoomLocator).click();
     }
+
+    public void expandCreditCardSection() {
+        if (Driver.getDriver().findElements(addCreditCardLocator).isEmpty()) {
+            Driver.getDriver().findElement(creditCardLabelLocator).click();
+        }
+        Driver.getWebDriverWait()
+                .until(ExpectedConditions.visibilityOfElementLocated(addCreditCardLocator));
+    }
+    public void navigateToAddCreditCardDetail() {
+        Driver.getDriver().findElement(addCreditCardLocator).click();
+    }
+
 
     public void logOut() {
         Driver.getDriver().findElement(logOutButtonLocator).click();

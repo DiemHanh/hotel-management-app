@@ -1,6 +1,7 @@
 package utils;
 
 import com.github.javafaker.Faker;
+import models.admin.CreditCard;
 import models.admin.Room;
 import models.admin.RoomType;
 import models.user.UserInformation;
@@ -20,11 +21,20 @@ public class FakerData {
                 faker.address().cityName(),
                 faker.options().option("Deluxe Suite", "Family Room", "Presidential Villa", "Ocean View Room"),
                 faker.number().numberBetween(1, 9999));
-        int price = faker.number().numberBetween(50, 500);
+        double price = faker.number().numberBetween(50, 500);
         int adultNumber = faker.number().numberBetween(1, 4);
         int childrenNumber = faker.number().numberBetween(1, 5);
         String description = faker.lorem().sentence(3);
-        return new RoomType(title, price, adultNumber, childrenNumber, description);
+        return new RoomType(title, price, description, adultNumber, childrenNumber);
+    }
+
+    public static CreditCard generateRandomCreditCard() {
+        String creditCardNumber = faker.number().digits(16);
+        String ownerName = faker.name().fullName().toUpperCase();
+        int expiryMonth = faker.number().numberBetween(1, 12);
+        int expiryYear = faker.number().numberBetween(26,30);
+        String cvvCode = faker.number().digits(4);
+        return new CreditCard(creditCardNumber, ownerName, expiryMonth, expiryYear, cvvCode, 0);
     }
 
     public static UserInformation generateRandomUser() {
