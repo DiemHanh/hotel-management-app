@@ -5,9 +5,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.Driver;
 
 public class HomePage extends LoginModal {
-    private final By loginBtnLocator = By.linkText("Login");
-    private final By loginSignupModalLocator = By.id("login_signup");
-
     private final By scrollToTopLocator = By.id("scrollToTop");
     private final By checkInInputLocator = By.id("check-in");
     private final By checkOutInputLocator = By.id("check-out");
@@ -15,11 +12,6 @@ public class HomePage extends LoginModal {
     private final By childrenInputLocator = By.name("children");
     private final By searchBtnLocator = By.cssSelector("[value='Search']");
     private final By roomLinkLocator = By.linkText("Rooms");
-
-    public void openLoginModal() {
-        Driver.getDriver().findElement(loginBtnLocator).click();
-        Driver.getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(loginSignupModalLocator));
-    }
 
     public void searchBookingAvailable(String checkIndate, String checkOutdate, String adult, String child) {
         enterCheckInDate(checkIndate);

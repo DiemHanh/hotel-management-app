@@ -6,10 +6,7 @@ import page.admin.AdminAddRoomTypePage;
 import page.admin.AdminAllRoomTypesPageAdmin;
 import models.admin.RoomType;
 import org.testng.annotations.Test;
-import page.user.HomePage;
-import page.user.LoginModal;
-import page.user.RoomDetailPage;
-import page.user.RoomListPage;
+import page.user.*;
 import utils.Config;
 import utils.Constant;
 import utils.Driver;
@@ -22,8 +19,9 @@ public class TC09 extends TestBaseAdmin {
     AdminAddRoomTypePage adminAddRoomTypePage = new AdminAddRoomTypePage();
     AdminAllRoomTypesPageAdmin adminAllRoomTypesPage = new AdminAllRoomTypesPageAdmin();
     RoomDetailPage roomDetailPage = new RoomDetailPage();
-    int searchRow = 1;
+    Header header = new Header();
 
+    int searchRow = 1;
 
     RoomType randomRoomType = FakerData.generateRandomRoomType();
 
@@ -65,7 +63,7 @@ public class TC09 extends TestBaseAdmin {
         Driver.getDriver().navigate().to(Config.URL_USER_PAGE);
 
         //open login modal
-        homePage.openLoginModal();
+        header.openLoginModal();
 
         //8. Login as User
         loginModal.login(Constant.DEFAULT_ACCOUNT_USER);

@@ -3,6 +3,7 @@ package utils;
 import com.github.javafaker.Faker;
 import models.admin.Room;
 import models.admin.RoomType;
+import models.user.BookingInformation;
 import models.user.UserInformation;
 
 public class FakerData {
@@ -33,6 +34,15 @@ public class FakerData {
                 faker.name().username() + "@yopmail.com",
                 faker.numerify("0#########"),
                 faker.address().streetAddress()
+        );
+    }
+
+    public static BookingInformation generateBookingInformation() {
+        return new BookingInformation(
+                DateUtils.getToday(),
+                DateUtils.getFollowingDay(DateUtils.getToday()),
+                faker.number().numberBetween(1, 3),
+                faker.number().numberBetween(1, 3)
         );
     }
 }

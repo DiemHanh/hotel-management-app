@@ -10,7 +10,6 @@ import page.user.*;
 import utils.Constant;
 import utils.DateUtils;
 import utils.FakerData;
-import utils.TabWindow;
 
 import java.time.LocalDate;
 
@@ -22,29 +21,19 @@ public class TC01 extends TestBaseUser {
     PaymentPage paymentPage = new PaymentPage();
     ConfirmPage confirmPage = new ConfirmPage();
     YopMail yopmail = new YopMail();
-    TabWindow tabWindow = new TabWindow();
 
-    LocalDate today = DateUtils.getToday();
     UserInformation userInfo = FakerData.generateRandomUser();
+    BookingInformation bookingInfo = FakerData.generateBookingInformation();
 
     @Test
     public void TC01() {
         homePage.openRoomsPage();
 
         // open random room at detail page
-//        roomListPage.openRoomDetailByIndex(faker.number().numberBetween(1, 6));
-        roomListPage.openRoomDetailByIndex(4);
+        roomListPage.openRoomDetailByIndex(faker.number().numberBetween(1, 6));
 
         // enter booking info
-//        roomDetailPage.inputInformationBooking(today, DateUtils.getFollowingDay(today), faker.number().numberBetween(1, 3), faker.number().numberBetween(1, 3));
-        roomDetailPage.submitInformationBooking(new BookingInformation(today, DateUtils.getFollowingDay(today), 1, 0));
-
-        // open yop mail page in a new tab
-        yopmail.openYopMailPageInNewTab();
-        yopmail.openInboxMail(userInfo.getEmail());
-        log.info(userInfo.getEmail());
-        // back to booking tab
-        tabWindow.switchBackToOriginalTab();
+        roomDetailPage.submitBookingInformation(bookingInfo);
 
         // enter personal info and checkbox
         bookingPage.submitUserInfo(userInfo);
@@ -55,12 +44,12 @@ public class TC01 extends TestBaseUser {
         // confirm page
         sa.assertEquals(confirmPage.getSuccessMessage(), "Thank you! Your booking has been placed. We will contact you to confirm about the booking soon.");
 
-        // switch to email tab
-        tabWindow.switchToLastTab();
-        // close advertise
-        yopmail.refreshInboxMail();
-//        log.info(tempMailPage.getSubjectEmail());
+        // open yop mail page in a new tab
+        yopmail.openYopMailPageInNewTab();
+        yopmail.openInboxMail(userInfo.getEmail());
+        yopmail.openInbox();
 
+        sa.assertEquals(yopmail.getSubjectEmail(), "Your booking has been placed !");
         sa.assertAll();
     }
 }

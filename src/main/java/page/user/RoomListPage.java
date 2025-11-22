@@ -1,5 +1,6 @@
 package page.user;
 
+import lombok.extern.slf4j.Slf4j;
 import models.user.Room;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -8,6 +9,7 @@ import utils.Driver;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class RoomListPage {
     private final By roomContainerLocator = By.className("pop_item_description");
     private final By roomNameLocator = By.tagName("h5");
@@ -56,9 +58,9 @@ public class RoomListPage {
                 .orElse(null);
 
         if (targetRoom == null) {
-            System.out.println("Not found: " + roomName);
+            log.info("Not found: " + roomName);
         } else {
-            System.out.println("Room is found: " + roomName);
+            log.info("Room is found: " + roomName);
             targetRoom.findElement(roomBtnToDetailLocator).click();
         }
     }

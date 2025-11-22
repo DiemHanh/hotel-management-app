@@ -1,10 +1,10 @@
 package models.user;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Getter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserInformation {
@@ -13,9 +13,13 @@ public class UserInformation {
     private String phone;
     private String address;
 
-
     @Override
     public String toString() {
-        return "User {name='" + name + "', email=" + email + "', phone=" + phone + "', address=" + address + "}";
+        return "UserInformation{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }
