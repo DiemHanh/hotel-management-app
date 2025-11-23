@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class CreditCard {
     private String cardNumber;
     private String cardName;
-    private String cardDate; //YearMonth/MonthYear
+    private String cardDate;
     private String cardCVV;
 }

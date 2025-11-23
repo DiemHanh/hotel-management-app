@@ -26,7 +26,7 @@ public class MyBookingPage {
 
     public void openCancelModalByIndex(int index) {
         List<WebElement> cancelButtons = Driver.getDriver().findElements(cancelBookingLocator);
-        cancelButtons.get(index + 1).click();
+        cancelButtons.get(index).click();
     }
 
     public void cancelBooking() {
