@@ -18,4 +18,9 @@ public class CancelBookingPage {
                 .map(text -> text.replaceAll(".*Id:\\s*", "")) // Remove "Id: " prefix
                 .collect(Collectors.toList());
     }
+
+    public boolean isBookingIdExisted(String bookingId) {
+        List<String> cancelledBookingIds = getListBookingId();
+        return cancelledBookingIds.contains(bookingId);
+    }
 }

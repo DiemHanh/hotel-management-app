@@ -8,10 +8,7 @@ import org.testng.annotations.Test;
 import page.email.YopMail;
 import page.user.*;
 import utils.Constant;
-import utils.DateUtils;
 import utils.FakerData;
-
-import java.time.LocalDate;
 
 @Slf4j
 public class TC01 extends TestBaseUser {

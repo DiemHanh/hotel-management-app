@@ -1,7 +1,6 @@
 package User;
 
 import TestBase.TestBaseUser;
-import lombok.extern.slf4j.Slf4j;
 import models.user.BookingInformation;
 import models.user.UserInformation;
 import org.testng.annotations.Test;
@@ -9,30 +8,24 @@ import page.user.*;
 import utils.Constant;
 import utils.FakerData;
 
-@Slf4j
-public class TC03 extends TestBaseUser {
+public class TC08 extends TestBaseUser {
     RoomListPage roomListPage = new RoomListPage();
     RoomDetailPage roomDetailPage = new RoomDetailPage();
-    LoginModal loginModal = new LoginModal();
     BookingPage bookingPage = new BookingPage();
     PaymentPage paymentPage = new PaymentPage();
     ConfirmPage confirmPage = new ConfirmPage();
+    SearchPage searchPage = new SearchPage();
     Header header = new Header();
-    MyBookingPage myBookingPage = new MyBookingPage();
-    CancelBookingPage cancelBookingPage = new CancelBookingPage();
 
     UserInformation userInfo = FakerData.generateRandomUser();
     BookingInformation bookingInfo = FakerData.generateBookingInformation();
 
     private String bookingId;
-    private int bookingIndex;
 
     @Test
-    public void TC03() {
-        header.openLoginModal();
-        loginModal.login(Constant.DEFAULT_ACCOUNT_USER);
-
+    public void TC08() {
         homePage.openRoomsPage();
+
         // open random room at detail page
         roomListPage.openRoomDetailByIndex(faker.number().numberBetween(1, 6));
 
@@ -45,24 +38,12 @@ public class TC03 extends TestBaseUser {
         // enter credit card and pay now
         paymentPage.submitPaymentBooking(Constant.DEFAULT_CREDIT_CARD);
 
-        // get bookingId
+        // get bookingId to search after booking successfully
         bookingId = confirmPage.getBookingId();
+        header.searchBookingNumber(bookingId);
 
-        // navigate to my booking page
-        header.navigateToMyBookingPage();
-        bookingIndex = myBookingPage.getIndexFromBookingNumber(bookingId);
-
-        // open cancel newly booking modal
-        myBookingPage.openCancelModalByIndex(bookingIndex);
-
-        // trigger cancel newly booking
-        myBookingPage.cancelBooking();
-
-        // navigate cancel bookings page
-        header.navigateToCancelBookingPage();
-
-        // verify the cancellation booking ID exists in cancelled bookings
-        sa.assertTrue(cancelBookingPage.isBookingIdExisted(bookingId), "Booking cancellation failed.");
+        // verify that can search for a room booked
+        sa.assertEquals(bookingId, searchPage.getBookingId());
         sa.assertAll();
     }
 }
