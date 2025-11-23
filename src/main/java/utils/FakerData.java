@@ -7,8 +7,11 @@ import models.admin.RoomType;
 import models.user.BookingInformation;
 import models.user.UserInformation;
 
+import java.util.Random;
+
 public class FakerData {
-    private static Faker faker = new Faker();
+    private static final long SEED = 12345L;
+    private static Faker faker = new Faker(new Random(SEED));
 
     public static Room generateRandomRoom() {
         int roomNumber = faker.number().numberBetween(10000, 99999);
@@ -33,7 +36,7 @@ public class FakerData {
         String creditCardNumber = faker.number().digits(16);
         String ownerName = faker.name().fullName().toUpperCase();
         int expiryMonth = faker.number().numberBetween(1, 12);
-        int expiryYear = faker.number().numberBetween(26,30);
+        int expiryYear = faker.number().numberBetween(26, 30);
         String cvvCode = faker.number().digits(3);
         return new AdminCreditCard(creditCardNumber, ownerName, expiryMonth, expiryYear, cvvCode, 0);
     }
@@ -56,4 +59,3 @@ public class FakerData {
         );
     }
 }
-

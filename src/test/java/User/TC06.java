@@ -1,15 +1,16 @@
 package User;
 
 import TestBase.TestBaseUser;
-import lombok.extern.slf4j.Slf4j;
+import Listeners.TestListener;
 import models.user.Room;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import page.user.RoomDetailPage;
 import page.user.RoomListPage;
 
 import java.util.List;
 
-@Slf4j
+@Listeners(TestListener.class)
 public class TC06 extends TestBaseUser {
     RoomListPage roomListPage = new RoomListPage();
     RoomDetailPage roomDetailPage = new RoomDetailPage();
