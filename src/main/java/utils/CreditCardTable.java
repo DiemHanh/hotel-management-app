@@ -15,5 +15,4 @@ public enum CreditCardTable {
     BALANCE("Balance");
 
     private final String value;
-
 }

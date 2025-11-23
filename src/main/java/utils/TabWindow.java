@@ -1,7 +1,5 @@
 package utils;
 
-import org.openqa.selenium.JavascriptExecutor;
-
 import java.util.ArrayList;
 
 public class TabWindow {

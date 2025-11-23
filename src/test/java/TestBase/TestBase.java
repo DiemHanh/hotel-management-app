@@ -4,6 +4,8 @@ import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.asserts.SoftAssert;
 import utils.Driver;
 
@@ -13,6 +15,9 @@ public class TestBase {
     protected Faker faker = new Faker();
 
     public void setUp(String url) {
+//        FirefoxOptions options = new FirefoxOptions();
+//        options.addArguments("-private");
+//        WebDriver driver = new FirefoxDriver(options);
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--guest");
         WebDriver driver = new ChromeDriver(options);
