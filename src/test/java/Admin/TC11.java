@@ -36,23 +36,23 @@ public class TC11 extends TestBaseAdmin {
         //1. Login as Admin
         adminLoginPage.login(Constant.DEFAULT_ACCOUNT_ADMIN);
 
-        // Expand Rooms label
+        //2. Expand Rooms label
         adminHomePage.expandCreditCardSection();
 
-        //2. Select Add CreditCard option
+        //3. Select Add CreditCard option
         adminHomePage.navigateToAddCreditCardDetail();
 
-        //3. Add Credit Card
+        //4. Add Credit Card
         adminAddCreditCardPage.addCreditCard(randomAdminCreditCard);
 
-        //4. Search for newly created credit card
+        //5. Search for newly created credit card
         adminViewAllCreditCardPage.searchCreditCard(randomAdminCreditCard.getCreditCardNumber());
 
         //Verify CreditCard Number is displayed as expected > cvv not displayed in Table > set null
         sa.assertEquals(adminViewAllCreditCardPage.getCreditCardByIndex(searchRow).toString(),
                 randomAdminCreditCard.toString(), "CreditCard information Not Match");
 
-        //Logout
+        //6. Logout
         adminViewAllCreditCardPage.logOut();
 
         //navigate to User URL
@@ -61,22 +61,22 @@ public class TC11 extends TestBaseAdmin {
         //open login modal
         header.openLoginModal();
 
-        //5. Login as User
+        //7. Login as User
         loginModal.login(Constant.DEFAULT_ACCOUNT_USER);
 
-        //6. Open Rooms Page
+        //8. Open Rooms Page
         homePage.openRoomsPage();
 
-        //7. Open random Room by index
+        //9. Open random Room by index
         roomListPage.openRoomDetailByIndex(faker.number().numberBetween(1, 6));
 
-        //8. From Room Details page, enter Booking information then click on Book Now button
+        //10. From Room Details page, enter Booking information then click on Book Now button
         roomDetailPage.submitBookingInformation(bookingInfo);
 
-        //9. enter personal info and checkbox
+        //11. Enter personal info and checkbox
         bookingPage.submitUserInfo(userInfo);
 
-        //10. enter credit card and pay now
+        //12. Enter credit card and pay now
         paymentPage.submitPaymentBooking(new CreditCard(
                 randomAdminCreditCard.getCreditCardNumber(),
                 randomAdminCreditCard.getOwnerName(),

@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AdminViewAllCreditCardPage extends AdminHomePage {
-    private static final String COL_EXPIRY_DATE = "Expiry Date";
     private final By searchLocator = By.cssSelector("[type=\"search\"]");
     private final By headerLocator = By.xpath("//table/thead//th");
     private final By firstRowLocator = By.xpath("//table/tbody/tr[1]");
@@ -95,7 +94,6 @@ public class AdminViewAllCreditCardPage extends AdminHomePage {
 
         return c;
     }
-
 }
 
 

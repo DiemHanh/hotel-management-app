@@ -18,11 +18,10 @@ public class RoomType {
     @Override
     public String toString() {
         return "RoomType{" +
-                "price=" + price +
-                ", description='" + description + '\'' +
+                "title='" + title + '\'' +
+                ", price=" + price +
                 ", adultCapacity=" + adultCapacity +
                 ", childrenCapacity=" + childrenCapacity +
-                ", title='" + title + '\'' +
                 '}';
     }
 }

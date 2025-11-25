@@ -2,11 +2,14 @@ package utils;
 
 import com.github.javafaker.Faker;
 import models.admin.AdminCreditCard;
+import models.admin.Promotion;
 import models.admin.Room;
 import models.admin.RoomType;
 import models.user.BookingInformation;
 import models.user.UserInformation;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Random;
 
 public class FakerData {
@@ -47,6 +50,13 @@ public class FakerData {
                 faker.numerify("0#########"),
                 faker.address().streetAddress()
         );
+    }
+
+    public static Promotion generateRandomPromotion() {
+        String promotionName = String.format("%s Deal", faker.commerce().productName());
+        String promotionCode = faker.code().asin();
+        int promotionValue = faker.number().numberBetween(50, 200);
+        return new Promotion(promotionName, promotionCode, null, null, null, promotionValue);
     }
 
     public static BookingInformation generateBookingInformation() {
