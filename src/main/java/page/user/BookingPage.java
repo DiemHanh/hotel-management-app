@@ -13,6 +13,7 @@ public class BookingPage {
     private final By checkboxLocator = By.xpath("//form[@id='user']//label");
     private final By submitBtnLocator = By.cssSelector("[value='Submit']");
 
+    @Step("Submit user information")
     public void submitUserInfo(UserInformation userInformation) {
         enterName(userInformation.getName());
         enterEmail(userInformation.getEmail());

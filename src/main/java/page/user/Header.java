@@ -40,5 +40,6 @@ public class Header {
         Driver.getDriver().findElement(searchBtnLocator).click();
         Driver.getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(searchInputLocator));
         Driver.getDriver().findElement(searchInputLocator).sendKeys(bookingNumber, Keys.ENTER);
+        // todo: wait search successfully
     }
 }

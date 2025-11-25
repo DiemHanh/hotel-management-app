@@ -10,8 +10,7 @@ import models.user.UserInformation;
 import java.util.Random;
 
 public class FakerData {
-    private static final long SEED = 12345L;
-    private static Faker faker = new Faker(new Random(SEED));
+    private static Faker faker = new Faker();
 
     public static Room generateRandomRoom() {
         int roomNumber = faker.number().numberBetween(10000, 99999);

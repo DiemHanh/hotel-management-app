@@ -24,6 +24,34 @@ public class TC04 extends TestBaseUser {
     BookingInformation bookingInfo = FakerData.generateBookingInformation();
     CreditCard validCard = Constant.DEFAULT_CREDIT_CARD;
 
+    private CreditCard wrongNumberCreditCard = new CreditCard(
+            faker.finance().creditCard().replaceAll("-", ""),
+            faker.name().fullName(),
+            faker.number().digits(4),
+            faker.number().digits(3)
+    );
+
+    private CreditCard wrongNameCreditCard = new CreditCard(
+            validCard.getCardNumber(),
+            faker.name().fullName(),
+            faker.number().digits(4),
+            faker.number().digits(3)
+    );
+
+    private CreditCard wrongDateCreditCard = new CreditCard(
+            validCard.getCardNumber(),
+            validCard.getCardName(),
+            faker.number().digits(4),
+            faker.number().digits(3)
+    );
+
+    private CreditCard wrongCVVCreditCard = new CreditCard(
+            validCard.getCardNumber(),
+            validCard.getCardName(),
+            validCard.getCardDate(),
+            faker.number().digits(3)
+    );
+
     private void verifyPaymentError(CreditCard card, String expectedError) {
         paymentPage.submitPaymentBooking(card);
         sa.assertEquals(paymentPage.getErrorMsg(), expectedError);
@@ -44,45 +72,25 @@ public class TC04 extends TestBaseUser {
 
         log.info("Verify credit card not exists");
         verifyPaymentError(
-                new CreditCard(
-                        faker.finance().creditCard().replaceAll("-", ""),
-                        faker.name().fullName(),
-                        faker.number().digits(4),
-                        faker.number().digits(3)
-                ),
+                wrongNumberCreditCard,
                 "CreditCard not exists !!!"
         );
 
         log.info("Verify input wrong name");
         verifyPaymentError(
-                new CreditCard(
-                        validCard.getCardNumber(),
-                        faker.name().fullName(),
-                        faker.number().digits(4),
-                        faker.number().digits(3)
-                ),
+                wrongNameCreditCard,
                 "Wrong CreditCard information !!!"
         );
 
         log.info("Verify input wrong date");
         verifyPaymentError(
-                new CreditCard(
-                        validCard.getCardNumber(),
-                        validCard.getCardName(),
-                        faker.number().digits(4),
-                        validCard.getCardCVV()
-                ),
+                wrongDateCreditCard,
                 "Wrong CreditCard information !!!"
         );
 
         log.info("Verify input wrong cvv");
         verifyPaymentError(
-                new CreditCard(
-                        validCard.getCardNumber(),
-                        validCard.getCardName(),
-                        validCard.getCardDate(),
-                        faker.number().digits(3)
-                ),
+                wrongCVVCreditCard,
                 "Wrong CreditCard information !!!"
         );
 

@@ -24,6 +24,7 @@ public class PaymentPage {
                 .trim();
     }
 
+    @Step("submitPaymentBooking")
     public void submitPaymentBooking(CreditCard creditCard) {
         Driver.getWebDriverWait().until(ExpectedConditions.textToBe(Constant.titlePageLocator, "Checkout"));
         enterCardNumber(creditCard.getCardNumber());
@@ -55,6 +56,7 @@ public class PaymentPage {
         cvvInput.sendKeys(String.valueOf(cvv));
     }
 
+    @Step("Click pay now button")
     public void clickPayNowBtn() {
         Driver.getDriver().findElement(payNowBtnLocator).click();
     }
