@@ -54,5 +54,4 @@ public class AdminAddCreditCardPage {
     public void clickSubmitButton() {
         Driver.getDriver().findElement(submitBtnLocator).click();
     }
-
 }

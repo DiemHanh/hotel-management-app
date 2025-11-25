@@ -1,12 +1,8 @@
 package models.admin;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
-@Getter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdminCreditCard {
@@ -17,7 +13,7 @@ public class AdminCreditCard {
     private String cvvCode;
     private double balance;
 
-    //use toString because not allowed to compare 2 objects
+    //use toString because should not compare 2 objects
     @Override
     public String toString() {
         return "AdminCreditCard{" +

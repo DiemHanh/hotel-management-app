@@ -45,7 +45,6 @@ public class TC09 extends TestBaseAdmin {
         adminAllRoomTypesPage.getPriceByRowIndex(1);
 
         // Verify actual match expected result > no description in RoomTypeTable > set Description = ""
-        randomRoomType.setDescription("");
         sa.assertEquals(adminAllRoomTypesPage.getRoomTypeByIndex(searchRow).toString(),
                 randomRoomType.toString(), "Room Type in search result does not match expected value");
 

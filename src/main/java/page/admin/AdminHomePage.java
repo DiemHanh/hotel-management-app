@@ -12,6 +12,20 @@ public class AdminHomePage {
     private final By logOutButtonLocator = By.cssSelector("[data-original-title=\"Logout\"]");
     private final By creditCardLabelLocator = By.xpath("//span[text()='CreditCard']");
     private final By addCreditCardLocator = By.linkText("Add CreditCard");
+    private final By promotionLabelLocator = By.xpath("//span[@class='title' and normalize-space()='Promotion']");
+    private final By addPromotionLocator = By.linkText("Add Promotion");
+
+    public void expandPromotionSection() {
+        if (Driver.getDriver().findElements(addPromotionLocator).isEmpty()) {
+            Driver.getDriver().findElement(promotionLabelLocator).click();
+        }
+        Driver.getWebDriverWait()
+                .until(ExpectedConditions.visibilityOfElementLocated(addPromotionLocator));
+    }
+
+    public void navigateToAddPromotionDetail() {
+        Driver.getDriver().findElement(addPromotionLocator).click();
+    }
 
     public void expandRoomTypesSection() {
         if (Driver.getDriver().findElements(addRoomTypeLocator).isEmpty()) {
