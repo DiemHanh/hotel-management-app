@@ -1,5 +1,6 @@
 package page.user;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,11 +25,13 @@ public class MyBookingPage {
         return bookingNumbers.indexOf(bookingNumber);
     }
 
+    @Step("Open modal cancel")
     public void openCancelModalByIndex(int index) {
         List<WebElement> cancelButtons = Driver.getDriver().findElements(cancelBookingLocator);
         cancelButtons.get(index).click();
     }
 
+    @Step("Execute cancel booking")
     public void cancelBooking() {
         Driver.getWebDriverWait()
                 .until(ExpectedConditions.visibilityOfElementLocated(modalCancelLocator));

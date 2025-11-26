@@ -31,6 +31,7 @@ public class LoginModal {
         Driver.getDriver().findElement(passwordLocator).sendKeys(password);
     }
 
+    @Step("Hit login button")
     public void clickLoginButton() {
         Driver.getDriver().findElement(loginButtonLocator).click();
     }

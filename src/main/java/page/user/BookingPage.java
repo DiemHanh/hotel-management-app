@@ -65,6 +65,7 @@ public class BookingPage {
         Driver.getDriver().findElement(addPromoLocator).click();
     }
 
+    @Step("enter promoCode: {0}")
     public void enterPromoCode(String promoCode) {
         Driver.getDriver().findElement(promoCodeTextLocator).sendKeys(promoCode);
     }
@@ -75,6 +76,7 @@ public class BookingPage {
                 ExpectedConditions.attributeToBe(promoCodeTextLocator, "value", ""));
     }
 
+    @Step("Apply promo code")
     public void applyPromoCode(String promoCode) {
         checkedPromoButton();
         enterPromoCode(promoCode);

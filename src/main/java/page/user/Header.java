@@ -1,5 +1,6 @@
 package page.user;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +16,7 @@ public class Header {
     private final By searchBtnLocator = By.className("sb-icon-search");
     private final By searchInputLocator = By.className("sb-search-input");
 
+    @Step("Open login modal")
     public void openLoginModal() {
         Driver.getDriver().findElement(loginBtnLocator).click();
         Driver.getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(loginSignupModalLocator));

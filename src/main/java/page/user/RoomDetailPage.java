@@ -1,5 +1,6 @@
 package page.user;
 
+import io.qameta.allure.Step;
 import models.user.BookingInformation;
 import models.user.Room;
 import org.openqa.selenium.By;
@@ -18,6 +19,7 @@ public class RoomDetailPage {
     private final By roomNameLocator = By.cssSelector("h3.float-left");
     private final By roomPriceLocator = By.cssSelector(".yemm_top_price > strong");
 
+    @Step("Submit booking information")
     public void submitBookingInformation(BookingInformation bookingInformation) {
         enterCheckInDate(bookingInformation.getCheckIndate());
         enterCheckOutDate(bookingInformation.getCheckOutdate());
@@ -26,28 +28,33 @@ public class RoomDetailPage {
         clickBookNowBtn();
     }
 
+    @Step("enter check in date: {0}")
     public void enterCheckInDate(LocalDate checkInDate) {
         String formattedDate = checkInDate.format(DateUtils.FORMATTER);
         Driver.getDriver().findElement(checkInInputLocator).sendKeys(formattedDate);
     }
 
+    @Step("enter check out date: {0}")
     public void enterCheckOutDate(LocalDate checkOutDate) {
         String formattedDate = checkOutDate.format(DateUtils.FORMATTER);
         Driver.getDriver().findElement(checkOutInputLocator).sendKeys(formattedDate);
     }
 
+    @Step("enter number adult: {0}")
     public void enterNumberAdult(int adult) {
         WebElement adultInput = Driver.getDriver().findElement(adultInputLocator);
         adultInput.clear();
         adultInput.sendKeys(String.valueOf(adult));
     }
 
+    @Step("enter number child: {0}")
     public void enterNumberChild(int child) {
         WebElement childInput = Driver.getDriver().findElement(childrenInputLocator);
         childInput.clear();
         childInput.sendKeys(String.valueOf(child));
     }
 
+    @Step("Hit book now button")
     public void clickBookNowBtn() {
         Driver.getDriver().findElement(bookNowBtnLocator).click();
     }
