@@ -24,7 +24,7 @@ public class AdminAddPromotionPage extends DateUtils {
     private final By submitBtnLocator = By.xpath("//button[text()='Submit']");
     private final By promotionTypeDropDownLocator = By.cssSelector("[data-mdl-for=\"list3\"] li");
 
-    @Step("Add promotion: {0}")
+    @Step("Add promotion")
     public void addPromotion(Promotion promotion, String type){
         enterPromotionName(promotion.getPromotionName());
         enterPromotionCode(promotion.getPromotionCode());

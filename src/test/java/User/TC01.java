@@ -1,6 +1,7 @@
 package User;
 
 import TestBase.TestBaseUser;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import models.user.BookingInformation;
 import models.user.UserInformation;

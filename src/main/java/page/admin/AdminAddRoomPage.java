@@ -18,7 +18,7 @@ public class AdminAddRoomPage {
     private final By descriptionLocator = By.id("education");
     private final By submitButtonLocator = By.cssSelector("[type=\"submit\"]");
 
-    @Step("Add room: {0}")
+    @Step("Add room")
     public void addRoom(Room room) {
         enterRoomNumber(room.getRoomNumber());
 

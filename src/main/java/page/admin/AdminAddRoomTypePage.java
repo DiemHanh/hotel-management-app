@@ -16,7 +16,7 @@ public class AdminAddRoomTypePage {
     private final By descriptionLocator = By.id("text7");
     private final By submitLocator = By.cssSelector("[class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink\"]");
 
-    @Step("Add room type: {0}")
+    @Step("Add room type")
     public void addRoomType(RoomType roomType) {
         enterTitle(roomType.getTitle());
         enterPrice(roomType.getPrice());
