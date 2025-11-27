@@ -11,7 +11,7 @@ import page.admin.AdminViewAllCreditCardPage;
 import page.user.*;
 import utils.*;
 
-public class TC11 extends TestBaseAdmin {
+public class TC02 extends TestBaseAdmin {
     AdminAddCreditCardPage adminAddCreditCardPage = new AdminAddCreditCardPage();
     AdminViewAllCreditCardPage adminViewAllCreditCardPage = new AdminViewAllCreditCardPage();
     HomePage homePage = new HomePage();
@@ -22,7 +22,6 @@ public class TC11 extends TestBaseAdmin {
     Header header = new Header();
     PaymentPage paymentPage = new PaymentPage();
 
-
     int searchRow = 1;
     String expectedBalanceMsg = "Balances not enough money !!!";
 
@@ -30,7 +29,6 @@ public class TC11 extends TestBaseAdmin {
     BookingInformation bookingInfo = FakerData.generateBookingInformation();
     UserInformation userInfo = FakerData.generateRandomUser();
 
-    //add before method > pre-condition
     @Test
     public void TC11() {
         //1. Login as Admin
@@ -91,6 +89,4 @@ public class TC11 extends TestBaseAdmin {
 
         sa.assertAll();
     }
-
-
 }

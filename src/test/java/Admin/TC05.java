@@ -46,7 +46,7 @@ public class TC05 extends TestBaseAdmin {
         randomPromotion.setPeriodEndDate(DateUtils.getFollowingDay(LocalDate.now()).format(DateTimeFormatter.ofPattern(dateFormat)));
         randomPromotion.setPromotionType(promotionType);
 
-        //5. Search newest promotion code in list view
+        //5. Search latest promotion code in list view
         adminViewAllPromotionsPage.searchPromotion(randomPromotion.getPromotionName());
 
         // Verify promotion code is created correctly
