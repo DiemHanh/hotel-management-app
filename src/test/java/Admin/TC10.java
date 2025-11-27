@@ -8,7 +8,6 @@ import page.admin.AdminAllRoomsPage;
 import utils.Constant;
 import utils.FakerData;
 
-
 public class TC10 extends TestBaseAdmin {
     AdminAddRoomPage adminAddRoomPage = new AdminAddRoomPage();
     AdminAllRoomsPage adminAllRoomsPage = new AdminAllRoomsPage();
@@ -33,7 +32,7 @@ public class TC10 extends TestBaseAdmin {
         //5. Search for newly created Room
         adminAllRoomsPage.searchRoom(String.valueOf(randomRoom.getRoomNumber()));
 
-        //6. Verify actual match expected result > no description in RoomTable > set Description = ""
+        //6. Verify actual match expected result
         sa.assertEquals(adminAllRoomsPage.getRoomByIndex(searchRow).toString(),
                 randomRoom.toString(), "Room in search result does not match expected value");
 
