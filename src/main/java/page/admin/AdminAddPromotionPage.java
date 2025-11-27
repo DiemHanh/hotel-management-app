@@ -25,7 +25,7 @@ public class AdminAddPromotionPage extends DateUtils {
     private final By promotionTypeDropDownLocator = By.cssSelector("[data-mdl-for=\"list3\"] li");
 
     @Step("Add promotion: {0}")
-    public void addPromotion(Promotion promotion, String type) throws InterruptedException {
+    public void addPromotion(Promotion promotion, String type){
         enterPromotionName(promotion.getPromotionName());
         enterPromotionCode(promotion.getPromotionCode());
         selectStartDateToday();
@@ -52,13 +52,13 @@ public class AdminAddPromotionPage extends DateUtils {
     }
 
     @Step("Select promotion type: {0}")
-    public void openPromotionTypeDropDown(String promotion) throws InterruptedException {
+    public void openPromotionTypeDropDown(String promotion){
         Driver.getDriver().findElement(promotionTypeLocator).click();
         selectPromotionTypeFromDropdown(promotion);
     }
 
     @Step("Choose promotion type from list: {0}")
-    public void selectPromotionTypeFromDropdown(String promotionType) throws InterruptedException {
+    public void selectPromotionTypeFromDropdown(String promotionType){
         Driver.getWebDriverWait().until(
                 ExpectedConditions.visibilityOfElementLocated(promotionTypeDropDownLocator)
         );
@@ -97,8 +97,6 @@ public class AdminAddPromotionPage extends DateUtils {
     public void clickSubmitButton() {
         Driver.getDriver().findElement(submitBtnLocator).click();
     }
-
-    // ====================== PRIVATE METHODS (NO @Step) ====================== //
 
     private WebElement getVisibleDayCell(int dayOfMonth) {
         By locator = By.cssSelector(
