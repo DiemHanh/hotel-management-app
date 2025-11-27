@@ -1,14 +1,12 @@
 package page.admin;
 
+import io.qameta.allure.Step;
 import models.admin.Room;
-import models.admin.RoomType;
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.Driver;
 import utils.RoomTable;
-import utils.RoomTypeTable;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +16,7 @@ public class AdminAllRoomsPage {
     private final By headerLocator = By.xpath("//table/thead//th");
     private final By firstRowLocator = By.xpath("//table/tbody/tr[1]");
 
+    @Step("Search room: {0}")
     public void searchRoom(String room) {
         WebElement search = Driver.getWebDriverWait()
                 .until(ExpectedConditions.elementToBeClickable(searchLocator));
@@ -57,23 +56,28 @@ public class AdminAllRoomsPage {
                 .getText();
     }
 
+    @Step("Get room number at row {0}")
     public int getRoomNumberByRowIndex(int row) {
         return Integer.parseInt(getSearchResult(RoomTable.ROOM_NUMBER, row));
     }
 
+    @Step("Get room type at row {0}")
     public String getRoomTypeByRowIndex(int row) {
         return getSearchResult(RoomTable.ROOM_TYPE, row);
     }
 
+    @Step("Get floor at row {0}")
     public int getFloorByRowIndex(int row) {
         return Integer.parseInt(getSearchResult(RoomTable.FLOOR, row));
     }
 
+    @Step("Get status at row {0}")
     public boolean getStatusAsBoolean(int row) {
         String uiStatus = getSearchResult(RoomTable.STATUS, row);
         return uiStatus.equalsIgnoreCase("Active") || uiStatus.equals("1");
     }
 
+    @Step("Get full room info from row {0}")
     public Room getRoomByIndex(int row) {
         Room r = new Room(
                 getRoomNumberByRowIndex(row),

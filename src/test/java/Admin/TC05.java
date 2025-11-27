@@ -30,7 +30,7 @@ public class TC05 extends TestBaseAdmin {
     BookingInformation bookingInfo = FakerData.generateBookingInformation();
 
     @Test
-    public void TC05() throws InterruptedException {
+    public void TC05() {
         //1. Login as Admin
         adminLoginPage.login(Constant.DEFAULT_ACCOUNT_ADMIN);
 

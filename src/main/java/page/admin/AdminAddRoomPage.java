@@ -1,5 +1,6 @@
 package page.admin;
 
+import io.qameta.allure.Step;
 import models.admin.Room;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,7 @@ public class AdminAddRoomPage {
     private final By descriptionLocator = By.id("education");
     private final By submitButtonLocator = By.cssSelector("[type=\"submit\"]");
 
+    @Step("Add room: {0}")
     public void addRoom(Room room) {
         enterRoomNumber(room.getRoomNumber());
 
@@ -32,11 +34,12 @@ public class AdminAddRoomPage {
         clickSubmitButton();
     }
 
-
+    @Step("Enter room number: {0}")
     public void enterRoomNumber(int roomNumber) {
         Driver.getDriver().findElement(roomNumberLocator).sendKeys(String.valueOf(roomNumber));
     }
 
+    @Step("Select latest room type")
     public String selectLatestRoomType() {
         Driver.getDriver().findElement(roomTypeLocator).click();
         Driver.getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(visibleRoomTypeLocator));
@@ -49,26 +52,28 @@ public class AdminAddRoomPage {
         return selectedType;
     }
 
+    @Step("Enter floor: {0}")
     public void enterFloor(int floor) {
         Driver.getDriver().findElement(floorLocator).clear();
         Driver.getDriver().findElement(floorLocator).sendKeys(String.valueOf(floor));
 
     }
 
+    @Step("Activate status if not selected")
     public boolean activateStatus() {
         WebElement input = Driver.getDriver().findElement(statusLocator);
         if (!input.isSelected()) {
             Driver.getDriver().findElement(sliderLocator).click();
         }
-        // return status true/false
         return Driver.getDriver().findElement(statusLocator).isSelected();
     }
 
-
+    @Step("Enter description")
     public void enterDescription(String description) {
         Driver.getDriver().findElement(descriptionLocator).sendKeys(description);
     }
 
+    @Step("Submit room")
     public void clickSubmitButton() {
         Driver.getDriver().findElement(submitButtonLocator).click();
     }
