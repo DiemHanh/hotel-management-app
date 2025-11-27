@@ -1,5 +1,6 @@
 package page.admin;
 
+import io.qameta.allure.Step;
 import models.admin.Promotion;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -15,30 +16,37 @@ public class AdminViewAllPromotionsPage extends AdminHomePage {
     private final By headerLocator = By.xpath("//table/thead//th");
     private final By firstRowLocator = By.xpath("//table/tbody/tr[1]");
 
+    @Step("Get promotion name at row {0}")
     public String getPromotionNameByRowIndex(int row) {
         return getSearchResult(PromotionTable.PROMOTION_NAME, row);
     }
 
+    @Step("Get promotion code at row {0}")
     public String getPromotionCodeByRowIndex(int row) {
         return getSearchResult(PromotionTable.PROMOTION_CODE, row);
     }
 
+    @Step("Get period start date at row {0}")
     public String getPeriodStartDateByRowIndex(int row) {
         return getSearchResult(PromotionTable.PERIOD_START_DATE, row);
     }
 
+    @Step("Get period end date at row {0}")
     public String getPeriodEndDateByRowIndex(int row) {
         return getSearchResult(PromotionTable.PERIOD_END_DATE, row);
     }
 
+    @Step("Get promotion type at row {0}")
     public String getPromotionTypeByRowIndex(int row) {
         return getSearchResult(PromotionTable.PROMOTION_TYPE, row);
     }
 
+    @Step("Get promotion value at row {0}")
     public int getPromotionValueByRowIndex(int row) {
         return Integer.parseInt(getSearchResult(PromotionTable.PROMOTION_VALUE, row));
     }
 
+    @Step("Get full promotion data at row {0}")
     public Promotion getPromotionByIndex(int row) {
         Promotion p = new Promotion(
                 getPromotionNameByRowIndex(row),
@@ -51,6 +59,7 @@ public class AdminViewAllPromotionsPage extends AdminHomePage {
         return p;
     }
 
+    @Step("Search promotion: {0}")
     public void searchPromotion(String promotionName) {
         WebElement search = Driver.getWebDriverWait()
                 .until(ExpectedConditions.elementToBeClickable(searchLocator));
@@ -60,6 +69,7 @@ public class AdminViewAllPromotionsPage extends AdminHomePage {
                 .until(ExpectedConditions.visibilityOfElementLocated(firstRowLocator));
     }
 
+    @Step("Get cell locator at row {0}, column {1}")
     public By getCellLocator(int row, int col) {
         String cellXpath = String.format("//table/tbody/tr[%d]/td[%d]", row, col);
         return By.xpath(cellXpath);

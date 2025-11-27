@@ -1,5 +1,6 @@
 package page.admin;
 
+import io.qameta.allure.Step;
 import models.admin.Promotion;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,6 +24,7 @@ public class AdminAddPromotionPage extends DateUtils {
     private final By submitBtnLocator = By.xpath("//button[text()='Submit']");
     private final By promotionTypeDropDownLocator = By.cssSelector("[data-mdl-for=\"list3\"] li");
 
+    @Step("Add promotion: {0}")
     public void addPromotion(Promotion promotion, String type) throws InterruptedException {
         enterPromotionName(promotion.getPromotionName());
         enterPromotionCode(promotion.getPromotionCode());
@@ -33,25 +35,29 @@ public class AdminAddPromotionPage extends DateUtils {
         clickSubmitButton();
     }
 
+    @Step("Enter promotion name: {0}")
     public void enterPromotionName(String promotionName) {
         Driver.getDriver().findElement(promotionNameLocator).sendKeys(promotionName);
     }
 
+    @Step("Enter promotion code: {0}")
     public void enterPromotionCode(String promotionCode) {
         Driver.getDriver().findElement(promotionCodeLocator).sendKeys(promotionCode);
     }
 
+    @Step("Enter promotion value: {0}")
     public void enterPromotionValue(int promotionValue) {
         Driver.getDriver().findElement(promotionValueLocator).clear();
         Driver.getDriver().findElement(promotionValueLocator).sendKeys(String.valueOf(promotionValue));
     }
 
+    @Step("Select promotion type: {0}")
     public void openPromotionTypeDropDown(String promotion) throws InterruptedException {
         Driver.getDriver().findElement(promotionTypeLocator).click();
         selectPromotionTypeFromDropdown(promotion);
     }
 
-
+    @Step("Choose promotion type from list: {0}")
     public void selectPromotionTypeFromDropdown(String promotionType) throws InterruptedException {
         Driver.getWebDriverWait().until(
                 ExpectedConditions.visibilityOfElementLocated(promotionTypeDropDownLocator)
@@ -65,21 +71,20 @@ public class AdminAddPromotionPage extends DateUtils {
         }
     }
 
+    @Step("Select start date: Today")
     public void selectStartDateToday() {
         Driver.getDriver().findElement(periodStartDateLocator).click();
         clickVisibleOkByJs();
     }
 
+    @Step("Select end date: Tomorrow")
     public void selectEndDateTomorrow() {
         Driver.getDriver().findElement(periodEndDateLocator).click();
         LocalDate today = LocalDate.now();
         LocalDate tomorrow = today.plusDays(1);
-        //check month(today) = month(nextday)
         if (tomorrow.getMonth().equals(today.getMonth())) {
             clickDayByJs(tomorrow.getDayOfMonth());
-        }
-        //tomorrow is in the next month -> go next month, then pick day 1
-        else {
+        } else {
             Driver.getWebDriverWait()
                     .until(ExpectedConditions.elementToBeClickable(nextButtonLocator))
                     .click();
@@ -88,11 +93,13 @@ public class AdminAddPromotionPage extends DateUtils {
         clickVisibleOkByJs();
     }
 
+    @Step("Submit promotion")
     public void clickSubmitButton() {
         Driver.getDriver().findElement(submitBtnLocator).click();
     }
 
-    // Return visible & enabled day cell element from the currently opened date picker calendar
+    // ====================== PRIVATE METHODS (NO @Step) ====================== //
+
     private WebElement getVisibleDayCell(int dayOfMonth) {
         By locator = By.cssSelector(
                 String.format("td[data-date='%d'] a.dtp-select-day", dayOfMonth)
@@ -117,14 +124,12 @@ public class AdminAddPromotionPage extends DateUtils {
         );
     }
 
-    //Click a visible Ok btn using JavaScript
     private void clickVisibleOkByJs() {
         WebElement okBtn = getVisibleOkButton();
         ((JavascriptExecutor) Driver.getDriver())
                 .executeScript("arguments[0].click();", okBtn);
     }
 
-    //Click a visible day cell using JavaScript
     private void clickDayByJs(int dayOfMonth) {
         WebElement cell = getVisibleDayCell(dayOfMonth);
         ((JavascriptExecutor) Driver.getDriver())

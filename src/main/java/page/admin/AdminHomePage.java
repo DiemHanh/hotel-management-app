@@ -1,5 +1,6 @@
 package page.admin;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.Driver;
@@ -7,7 +8,7 @@ import utils.Driver;
 public class AdminHomePage {
     private final By roomTypesLabelLocator = By.xpath("//span[text()='Room Types']");
     private final By addRoomTypeLocator = By.linkText("Add Room Type");
-    private final By roomsLabelLocator = By.xpath("//span[@class='title' and normalize-space()='Rooms']\n");
+    private final By roomsLabelLocator = By.xpath("//span[@class='title' and normalize-space()='Rooms']");
     private final By addRoomLocator = By.linkText("Add Room");
     private final By logOutButtonLocator = By.cssSelector("[data-original-title=\"Logout\"]");
     private final By creditCardLabelLocator = By.xpath("//span[text()='CreditCard']");
@@ -15,6 +16,7 @@ public class AdminHomePage {
     private final By promotionLabelLocator = By.xpath("//span[@class='title' and normalize-space()='Promotion']");
     private final By addPromotionLocator = By.linkText("Add Promotion");
 
+    @Step("Expand Promotion section")
     public void expandPromotionSection() {
         if (Driver.getDriver().findElements(addPromotionLocator).isEmpty()) {
             Driver.getDriver().findElement(promotionLabelLocator).click();
@@ -23,10 +25,12 @@ public class AdminHomePage {
                 .until(ExpectedConditions.visibilityOfElementLocated(addPromotionLocator));
     }
 
+    @Step("Navigate to Add Promotion page")
     public void navigateToAddPromotionDetail() {
         Driver.getDriver().findElement(addPromotionLocator).click();
     }
 
+    @Step("Expand Room Types section")
     public void expandRoomTypesSection() {
         if (Driver.getDriver().findElements(addRoomTypeLocator).isEmpty()) {
             Driver.getDriver().findElement(roomTypesLabelLocator).click();
@@ -35,10 +39,12 @@ public class AdminHomePage {
                 .until(ExpectedConditions.visibilityOfElementLocated(addRoomTypeLocator));
     }
 
+    @Step("Navigate to Add Room Type page")
     public void navigateToAddRoomTypeDetail() {
         Driver.getDriver().findElement(addRoomTypeLocator).click();
     }
 
+    @Step("Expand Rooms section")
     public void expandRoomsSection() {
         if (Driver.getDriver().findElements(addRoomLocator).isEmpty()) {
             Driver.getDriver().findElement(roomsLabelLocator).click();
@@ -47,10 +53,12 @@ public class AdminHomePage {
                 .until(ExpectedConditions.visibilityOfElementLocated(addRoomLocator));
     }
 
+    @Step("Navigate to Add Room page")
     public void navigateToAddRoomDetail() {
         Driver.getDriver().findElement(addRoomLocator).click();
     }
 
+    @Step("Expand Credit Card section")
     public void expandCreditCardSection() {
         if (Driver.getDriver().findElements(addCreditCardLocator).isEmpty()) {
             Driver.getDriver().findElement(creditCardLabelLocator).click();
@@ -58,11 +66,13 @@ public class AdminHomePage {
         Driver.getWebDriverWait()
                 .until(ExpectedConditions.visibilityOfElementLocated(addCreditCardLocator));
     }
+
+    @Step("Navigate to Add Credit Card page")
     public void navigateToAddCreditCardDetail() {
         Driver.getDriver().findElement(addCreditCardLocator).click();
     }
 
-
+    @Step("Logout")
     public void logOut() {
         Driver.getDriver().findElement(logOutButtonLocator).click();
     }
